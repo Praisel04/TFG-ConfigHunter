@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informe de Auditoría de Seguridad</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
+    h1, h2, h3 { color: #004C99; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+    th { background-color: #004C99; color: white; }
+    .severity-alta { background-color: #ffcccc; }
+    .severity-media { background-color: #fff2cc; }
+    .severity-baja { background-color: #d9ead3; }
+    .footer { text-align: center; font-size: 12px; color: #666; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div style="text-align: center; margin-bottom: 30px;">
+  <div style="font-size: 18px; color: #004C99; font-weight: bold;">
+    Informe de Auditoría de Seguridad
+  </div>
+  <p>Generado el 2025-11-25 12:42:24</p>
+  <p><strong>Sistema analizado:</strong> Localhost</p>
+  <hr style="border: 1px solid #004C99;">
+</div>
+  <div style="margin-bottom: 40px;">
+  <h2>Resumen Ejecutivo</h2>
+  <table style="width: 60%; margin: auto;">
+    <tr style="background-color: #004C99; color: white;">
+      <th>Alta</th>
+      <th>Media</th>
+      <th>Baja</th>
+      <th>Info</th>
+      <th>Total</th>
+    </tr>
+    <tr style="text-align: center;">
+      <td>2</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0</td>
+      <td>9</td>
+    </tr>
+  </table>
+</div>
+  
+    <div style="margin-bottom: 40px;">
+  <h2 style="color: #004C99;">Módulo: SSH</h2>
+  <p>Resultados del análisis del módulo ssh_check.</p>
+  
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+    <tr style="background-color: #004C99; color: white;">
+      <th>ID</th>
+      <th>Título</th>
+      <th>Severidad</th>
+      <th>Evidencia</th>
+      <th>Remediación</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr class="severity-alta">
+      <td>CHK-SSH-001</td>
+      <td>PermitRootLogin habilitado</td>
+      <td>Alta</td>
+      <td>Encontrado &#39;PermitRootLogin yes&#39; en líneas 2, 6</td>
+      <td>Cambiar a &#39;PermitRootLogin no&#39;.</td>
+    </tr>
+    
+    <tr class="severity-media">
+      <td>CHK-SSH-002</td>
+      <td>Autenticación por contraseña habilitada</td>
+      <td>Media</td>
+      <td>Encontrado &#39;PasswordAuthentication yes&#39; en líneas 3</td>
+      <td>Usar &#39;PasswordAuthentication no&#39; para forzar claves públicas.</td>
+    </tr>
+    
+    <tr class="severity-baja">
+      <td>CHK-SSH-004</td>
+      <td>PAM habilitado</td>
+      <td>Baja</td>
+      <td>Encontrado &#39;UsePAM yes&#39; en líneas 4</td>
+      <td>Deshabilitar &#39;UsePAM&#39; si no es necesario.</td>
+    </tr>
+    
+    <tr class="severity-media">
+      <td>CHK-SSH-005</td>
+      <td>Uso del puerto por defecto (22)</td>
+      <td>Media</td>
+      <td>Encontrado &#39;Port 22&#39; en líneas 1, 5</td>
+      <td>Cambiar el puerto a uno superior a 1024 (por ejemplo 2222).</td>
+    </tr>
+    
+    <tr class="severity-media">
+      <td>CHK-SSH-011</td>
+      <td>Parámetros duplicados detectados</td>
+      <td>Media</td>
+      <td>Port: líneas 1, 5; PermitRootLogin: líneas 2, 6, 9</td>
+      <td>Eliminar o unificar configuraciones repetidas para evitar conflictos.</td>
+    </tr>
+    
+    <tr class="severity-media">
+      <td>CHK-SSH-012</td>
+      <td>Parámetros críticos ausentes</td>
+      <td>Media</td>
+      <td>No se encontraron: Protocol</td>
+      <td>Definir explícitamente los parámetros ausentes en sshd_config.</td>
+    </tr>
+    
+    <tr class="severity-baja">
+      <td>CHK-SSH-013</td>
+      <td>Parámetros desconocidos o líneas inválidas</td>
+      <td>Baja</td>
+      <td>Línea 8: InvalidParam test; Línea 10: harvard; Línea 11: exploit.cmd</td>
+      <td>Revisar las líneas no reconocidas o eliminar configuraciones inválidas.</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+  
+    <div style="margin-bottom: 40px;">
+  <h2 style="color: #004C99;">Módulo: VALIDATOR</h2>
+  <p>Revisión de coherencia y consistencia global en las configuraciones.</p>
+  
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+    <tr style="background-color: #004C99; color: white;">
+      <th>ID</th>
+      <th>Título</th>
+      <th>Severidad</th>
+      <th>Evidencia</th>
+      <th>Remediación</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr class="severity-media">
+      <td>CHK-GEN-001</td>
+      <td>Parámetros duplicados globales</td>
+      <td>Media</td>
+      <td>Port: líneas 1, 5; PermitRootLogin: líneas 2, 6, 9</td>
+      <td>Eliminar o consolidar parámetros repetidos para evitar conflictos.</td>
+    </tr>
+    
+    <tr class="severity-alta">
+      <td>CHK-GEN-002</td>
+      <td>Parámetros con valores conflictivos</td>
+      <td>Alta</td>
+      <td>PermitRootLogin: yes, yes, no (líneas 2, 6, 9)</td>
+      <td>Mantener un único valor coherente para cada parámetro duplicado.</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+  
+  <div style="margin-top: 40px;">
+  <h2>Conclusiones</h2>
+  <p>El informe se ha generado correctamente. Consulte las secciones anteriores para detalles.</p>
+  
+  <ul>
+    
+      <li>Revisar las configuraciones críticas detectadas.</li>
+    
+      <li>Aplicar buenas prácticas de seguridad según los resultados de cada módulo.</li>
+    
+  </ul>
+  
+</div>
+  <footer style="text-align: center; margin-top: 50px; color: #666; font-size: 12px;">
+  <hr style="border: 0.5px solid #004C99;">
+  <p><i>Generado automáticamente por el Sistema de Auditoría Automatizada.</i></p>
+</footer>
+</body>
+</html>

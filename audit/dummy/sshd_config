@@ -1,0 +1,11 @@
+Port 22
+PermitRootLogin yes
+PasswordAuthentication yes
+UsePAM yes
+Port 22
+PermitRootLogin yes
+ClientAliveInterval 10
+InvalidParam test
+PermitRootLogin no
+harvard
+exploit.cmd

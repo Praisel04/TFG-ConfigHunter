@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informe de Auditoría de Seguridad</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
+    h1, h2, h3 { color: #004C99; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+    th { background-color: #004C99; color: white; }
+    .severity-critica { background-color: #ff7a7a; color:black; font-weight: bold; }
+    .severity-alta { background-color: #fddaa6; color:black; }
+    .severity-media { background-color: #fff2cc; color:black;}
+    .severity-baja { background-color: #d9ead3; color:black;}
+    .footer { text-align: center; font-size: 12px; color: #666; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div style="text-align: center; margin-bottom: 30px;">
+  <div style="font-size: 18px; color: #004C99; font-weight: bold;">
+    Informe de Auditoría de Seguridad
+  </div>
+  <p>Generado el 2025-11-26 18:45:15</p>
+  <p><strong>Sistema analizado:</strong> Localhost</p>
+  <hr style="border: 1px solid #004C99;">
+</div>
+  <div style="margin-bottom: 40px;">
+  <h2>Resumen Ejecutivo</h2>
+  <table style="width: 60%; margin: auto;">
+    <tr style="background-color: #004C99; color: white;">
+      <th>Alta</th>
+      <th>Media</th>
+      <th>Baja</th>
+      <th>Info</th>
+      <th>Total</th>
+    </tr>
+    <tr style="text-align: center;">
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+  </table>
+</div>
+  
+    
+        <div style="margin-bottom: 40px;">
+  <h2 style="color: #004C99;">Módulo: UFW</h2>
+  <p>Resultados del análisis del módulo ufw_check.</p>
+  
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+    <tr style="background-color: #004C99; color: white;">
+      <th>ID</th>
+      <th>Título</th>
+      <th>Severidad</th>
+      <th>Evidencia</th>
+      <th>Remediación</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr class="severity-critica">
+      <td>UFW-301</td>
+      <td>Regla ALLOW sin LIMIT (incumple STIG 600200)</td>
+      <td>Critica</td>
+      <td>Anywhere ALLOW Anywhere</td>
+      <td>Ejecutar: ufw limit None/tcp</td>
+    </tr>
+    
+    <tr class="severity-critica">
+      <td>UFW-302</td>
+      <td>Regla demasiado permisiva (ANY/ANY)</td>
+      <td>Critica</td>
+      <td>Anywhere ALLOW Anywhere</td>
+      <td>Restringir la regla a IPs específicas.</td>
+    </tr>
+    
+    <tr class="severity-media">
+      <td>UFW-305</td>
+      <td>Regla sin puerto definido</td>
+      <td>Media</td>
+      <td>Anywhere ALLOW Anywhere</td>
+      <td>Especificar el puerto en la regla.</td>
+    </tr>
+    
+    <tr class="severity-media">
+      <td>UFW-403</td>
+      <td>Reglas mal formadas o incompletas</td>
+      <td>Media</td>
+      <td>Anywhere ALLOW Anywhere</td>
+      <td>Recrear la regla correctamente.</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+    
+  
+  <div style="margin-top: 40px;">
+  <h2>Conclusiones</h2>
+  <p>Informe específico del módulo UFW.</p>
+  
+  <ul>
+    
+      <li>Revisar las configuraciones detectadas.</li>
+    
+      <li>Aplicar buenas prácticas de seguridad según los hallazgos.</li>
+    
+  </ul>
+  
+</div>
+  <footer style="text-align: center; margin-top: 50px; color: #666; font-size: 12px;">
+  <hr style="border: 0.5px solid #004C99;">
+  <p><i>Generado automáticamente por el Sistema de Auditoría Automatizada.</i></p>
+</footer>
+</body>
+</html>

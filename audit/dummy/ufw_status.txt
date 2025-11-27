@@ -1,0 +1,17 @@
+Status: Active
+Default: Deny (incoming)
+Default: Allow (outgoing)
+
+Logging: on
+
+To                         Action      From
+--                         ------      ----
+Anywhere ALLOW Anywhere
+
+
+
+
+
+
+
+

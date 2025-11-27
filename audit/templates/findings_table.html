@@ -1,0 +1,22 @@
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+    <tr style="background-color: #004C99; color: white;">
+      <th>ID</th>
+      <th>Título</th>
+      <th>Severidad</th>
+      <th>Evidencia</th>
+      <th>Remediación</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for finding in findings %}
+    <tr class="severity-{{ finding.severity }}">
+      <td>{{ finding.id }}</td>
+      <td>{{ finding.title }}</td>
+      <td>{{ finding.severity | capitalize }}</td>
+      <td>{{ finding.evidence }}</td>
+      <td>{{ finding.remediation }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informe de Auditoría de Seguridad</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
+    h1, h2, h3 { color: #004C99; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+    th { background-color: #004C99; color: white; }
+    .severity-critica { background-color: #ff7a7a; color:black; font-weight: bold; }
+    .severity-alta { background-color: #fddaa6; color:black; }
+    .severity-media { background-color: #fff2cc; color:black;}
+    .severity-baja { background-color: #d9ead3; color:black;}
+    .footer { text-align: center; font-size: 12px; color: #666; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  {% include 'header.html' %}
+  {% include 'summary.html' %}
+  {% for module in modules %}
+    {% if module.name != "VALIDATOR" %}
+        {% include 'module_section.html' %}
+    {% endif %}
+  {% endfor %}
+  {% include 'conclusion.html' %}
+  {% include 'footer.html' %}
+</body>
+</html>

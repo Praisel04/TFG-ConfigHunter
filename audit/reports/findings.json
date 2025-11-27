@@ -1,0 +1,59 @@
+{
+    "generated_on": "2025-11-26 18:45:15",
+    "system_name": "Localhost",
+    "summary": {
+        "critica": 2,
+        "alta": 0,
+        "media": 2,
+        "baja": 0,
+        "info": 0,
+        "total": 4
+    },
+    "modules": [
+        {
+            "name": "UFW",
+            "description": "Resultados del análisis del módulo ufw_check.",
+            "findings": [
+                {
+                    "id": "UFW-301",
+                    "title": "Regla ALLOW sin LIMIT (incumple STIG 600200)",
+                    "severity": "critica",
+                    "evidence": "Anywhere ALLOW Anywhere",
+                    "remediation": "Ejecutar: ufw limit None/tcp",
+                    "timestamp": "2025-11-26T18:45:15.741862"
+                },
+                {
+                    "id": "UFW-302",
+                    "title": "Regla demasiado permisiva (ANY/ANY)",
+                    "severity": "critica",
+                    "evidence": "Anywhere ALLOW Anywhere",
+                    "remediation": "Restringir la regla a IPs específicas.",
+                    "timestamp": "2025-11-26T18:45:15.741862"
+                },
+                {
+                    "id": "UFW-305",
+                    "title": "Regla sin puerto definido",
+                    "severity": "media",
+                    "evidence": "Anywhere ALLOW Anywhere",
+                    "remediation": "Especificar el puerto en la regla.",
+                    "timestamp": "2025-11-26T18:45:15.741862"
+                },
+                {
+                    "id": "UFW-403",
+                    "title": "Reglas mal formadas o incompletas",
+                    "severity": "media",
+                    "evidence": "Anywhere ALLOW Anywhere",
+                    "remediation": "Recrear la regla correctamente.",
+                    "timestamp": "2025-11-26T18:45:15.741862"
+                }
+            ]
+        }
+    ],
+    "conclusion": {
+        "summary": "Informe específico del módulo UFW.",
+        "recommendations": [
+            "Revisar las configuraciones detectadas.",
+            "Aplicar buenas prácticas de seguridad según los hallazgos."
+        ]
+    }
+}

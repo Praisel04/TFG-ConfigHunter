@@ -1,0 +1,11 @@
+<div style="margin-top: 40px;">
+  <h2>Conclusiones</h2>
+  <p>{{ conclusion.summary }}</p>
+  {% if conclusion.recommendations %}
+  <ul>
+    {% for rec in conclusion.recommendations %}
+      <li>{{ rec }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
