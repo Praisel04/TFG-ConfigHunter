@@ -1,0 +1,27 @@
+<div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          {{ finding.id }} — {{ finding.title }}
+      </h3>
+
+      {% if finding.cis_ref %}
+      <p><strong>Referencia CIS:</strong> {{ finding.cis_ref }}</p>
+      {% endif %}
+
+      <p><strong>Severidad:</strong> {{ finding.severity | upper }}</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          {{ finding.explanation }}
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+{{ finding.evidence }}
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+{{ finding.remediation }}
+      </pre>
+  </div>
+</div>

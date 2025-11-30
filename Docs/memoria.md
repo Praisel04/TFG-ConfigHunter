@@ -27,3 +27,23 @@ Tras el escaneo se genera un JSON (findings) que contiene todo y una estructura 
 **FLUJO DE EJECUCIÓN**
 
 scan --> JSON --> `python -m utils.generate_html_report` --> HTML --> `python -m utils.generate_pdf_from_html` --> PDF
+
+**24-11-2025**
+Automatizacion de la generacion de informes
+
+**26-11-2025**
+Creacion de modulo de UFW y cambio en el formato de las reglas.
+
+**27-11-2025**
+Modificacion de las reglas del modulo SSH_CHECK. Completamente guiadas en CIS 5.x.x. Cambios en la documentacion ahora en texto y no en tabla. Mejora visual del PDF.
+Nuevas decisiones. Informe general que incluya informacion de los hallazgos, remediacion detallada y playbooks completos con superficies de ataque, guias de explotacion, MITTRE ATTACK...
+
+Se ha configurado un motor de reglas avanzados para la explicacion detallada de la remediacion de los hallazgos. Se ha cambiado la estetica del PDF a una mas profesional y avanzada con colores adecuados.
+
+
+**COSAS POR HACER**
+1. Revisar la configuracion de ufw_check. 
+2. Revisar las reglas respecto al documento de CIS.
+3. Revisar la generación del PDF.
+4. Definir los playbooks
+5. Definir las tecnicas MITTRE y Kill Chain.

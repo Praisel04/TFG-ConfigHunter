@@ -123,14 +123,19 @@ def scan(module: str = typer.Argument(None, help="Nombre del módulo a escanear 
     try:
         from utils.generate_pdf_from_html import generate_pdf_from_html
 
+        # Si el escaneo no es específico de un módulo, generamos el informe completo (ALL)
         pdf_module_name = "ALL" if not is_single_scan else module.upper()
+
         console.print("[cyan]→ Generando informe PDF...[/cyan]")
 
+        # La nueva función solo recibe el nombre del módulo
         generate_pdf_from_html(pdf_module_name)
 
         console.print("[green]✔ Informe PDF generado correctamente.[/green]\n")
+
     except Exception as e:
         console.print(f"[red]Error generando PDF: {e}[/red]")
+
 
     console.print(f"[bold yellow]Resumen:[/bold yellow] {summary}")
     console.print("[bold cyan]=== ESCANEO COMPLETADO ===[/bold cyan]\n")

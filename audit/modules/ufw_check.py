@@ -40,8 +40,10 @@ def run():
                 "id": "UFW-000",
                 "title": "No se pudo obtener el estado de UFW",
                 "severity": "info",
+                "explanation": "No se puede analizar el firewall si no es posible obtener su estado.",
+                "cis_ref": None,
                 "evidence": str(e),
-                "remediation": "Crea dummy/ufw_status.txt o instala UFW.",
+                "remediation": "Crear dummy/ufw_status.txt o instalar UFW.",
                 "timestamp": timestamp
             })
             return findings
@@ -91,8 +93,10 @@ def run():
             "id": "UFW-101",
             "title": "Firewall UFW desactivado",
             "severity": "alta",
+            "explanation": "Si UFW está desactivado, no se aplica ningún control de tráfico, dejando el sistema completamente expuesto.",
+            "cis_ref": "CIS 4.1.1, STIG UBTU-24-102010",
             "evidence": f"Estado: {status}",
-            "remediation": "Ejecutar: ufw enable",
+            "remediation": "ufw enable",
             "timestamp": timestamp
         })
 
@@ -102,19 +106,23 @@ def run():
             "id": "UFW-102",
             "title": "La política de entrada no es DENY",
             "severity": "alta",
+            "explanation": "La política entrante debe bloquear todo el tráfico no solicitado. Permitirlo abre servicios inesperados al exterior.",
+            "cis_ref": "CIS 4.1.2",
             "evidence": f"default incoming = {default_in}",
-            "remediation": "Ejecutar: ufw default deny incoming",
+            "remediation": "ufw default deny incoming",
             "timestamp": timestamp
         })
 
-    # UFW-103 — DEFAULT OUTPUT ALLOW (recomendación)
+    # UFW-103 — DEFAULT OUTPUT ALLOW
     if default_out != "allow":
         findings.append({
             "id": "UFW-103",
             "title": "Recomendación: La política de salida no es ALLOW",
             "severity": "baja",
+            "explanation": "CIS recomienda permitir tráfico saliente por defecto salvo restricciones corporativas específicas.",
+            "cis_ref": "CIS 4.1.2",
             "evidence": f"default outgoing = {default_out}",
-            "remediation": "Ejecutar: ufw default allow outgoing",
+            "remediation": "ufw default allow outgoing",
             "timestamp": timestamp
         })
 
@@ -124,8 +132,10 @@ def run():
             "id": "UFW-104",
             "title": "Logging de UFW desactivado",
             "severity": "baja",
+            "explanation": "Sin logging no es posible detectar ni rastrear actividades maliciosas.",
+            "cis_ref": "CIS 4.1.3",
             "evidence": "Logging: off",
-            "remediation": "Ejecutar: ufw logging on",
+            "remediation": "ufw logging on",
             "timestamp": timestamp
         })
 
@@ -139,30 +149,32 @@ def run():
         if port != "22":
             continue
 
-        # IPv4 exposed
         if "anywhere" in rl or "0.0.0.0/0" in rl:
             findings.append({
                 "id": "UFW-201",
                 "title": "SSH expuesto públicamente (IPv4)",
                 "severity": "alta",
+                "explanation": "Permitir SSH desde cualquier origen facilita ataques de fuerza bruta.",
+                "cis_ref": "CIS 5.2.1, CIS Control 4.6",
                 "evidence": r,
-                "remediation": "Restringir SSH: ufw allow from <IP> to any port 22",
+                "remediation": "ufw allow from <IP> to any port 22",
                 "timestamp": timestamp
             })
 
-        # IPv6 exposed
         if "::/0" in rl or "anywhere (v6)" in rl:
             findings.append({
                 "id": "UFW-201",
                 "title": "SSH expuesto públicamente (IPv6)",
                 "severity": "alta",
+                "explanation": "Permitir SSH en IPv6 global expone el servicio a todo Internet.",
+                "cis_ref": "CIS 5.2.1",
                 "evidence": r,
                 "remediation": "Restringir acceso SSH en IPv6.",
                 "timestamp": timestamp
             })
 
     # ============================================================
-    # 🟥 UFW-300 — MISCONFIGURACIONES GRAVES
+    # 🟥 UFW-300 — REGLAS AVANZADAS
     # ============================================================
 
     for r in rules:
@@ -173,10 +185,12 @@ def run():
         if "allow" in rl and "limit" not in rl:
             findings.append({
                 "id": "UFW-301",
-                "title": "Regla ALLOW sin LIMIT (incumple STIG 600200)",
+                "title": "Regla ALLOW sin LIMIT",
                 "severity": "critica",
+                "explanation": "Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.",
+                "cis_ref": "CIS Control 4.6, STIG UBTU-24-600200",
                 "evidence": r,
-                "remediation": f"Ejecutar: ufw limit {port}/tcp",
+                "remediation": f"ufw limit {port}/tcp",
                 "timestamp": timestamp
             })
 
@@ -186,31 +200,37 @@ def run():
                 "id": "UFW-302",
                 "title": "Regla demasiado permisiva (ANY/ANY)",
                 "severity": "critica",
+                "explanation": "Permitir tráfico desde Anywhere viola las políticas de control de acceso CIS.",
+                "cis_ref": "CIS 4.1.2, CIS Control 4.8",
                 "evidence": r,
                 "remediation": "Restringir la regla a IPs específicas.",
                 "timestamp": timestamp
             })
 
-        # UFW-303 — 0.0.0.0/0 o ::/0
+        # UFW-303 — Exposición total
         if "0.0.0.0/0" in rl or "::/0" in rl:
             findings.append({
                 "id": "UFW-303",
-                "title": "Exposición total (0.0.0.0/0 o ::/0)",
+                "title": "Exposición total a Internet",
                 "severity": "critica",
+                "explanation": "El rango 0.0.0.0/0 o ::/0 significa que cualquier host del mundo puede conectarse.",
+                "cis_ref": "CIS Control 4.3",
                 "evidence": r,
                 "remediation": "Restringir origen o eliminar regla.",
                 "timestamp": timestamp
             })
 
         # UFW-304 — CIDR demasiado amplio
-        cidr = re.search(r"/(\d{1,2})", rl)
-        if cidr:
-            c = int(cidr.group(1))
+        cidr_match = re.search(r"/(\d{1,2})", rl)
+        if cidr_match:
+            c = int(cidr_match.group(1))
             if c < 24:
                 findings.append({
                     "id": "UFW-304",
                     "title": f"CIDR demasiado amplio (/ {c})",
                     "severity": "alta",
+                    "explanation": "Máscaras amplias permiten acceso desde redes enteras, aumentando la superficie de ataque.",
+                    "cis_ref": "CIS Control 4.8",
                     "evidence": r,
                     "remediation": "Usar /24 o IP específica.",
                     "timestamp": timestamp
@@ -222,6 +242,8 @@ def run():
                 "id": "UFW-305",
                 "title": "Regla sin puerto definido",
                 "severity": "media",
+                "explanation": "Las reglas sin puerto definido son ambiguas y pueden producir accesos no deseados.",
+                "cis_ref": "CIS Control 4.8",
                 "evidence": r,
                 "remediation": "Especificar el puerto en la regla.",
                 "timestamp": timestamp
@@ -246,8 +268,10 @@ def run():
             "id": "UFW-401",
             "title": "Reglas duplicadas detectadas",
             "severity": "media",
+            "explanation": "Las reglas duplicadas pueden generar comportamientos inconsistentes.",
+            "cis_ref": "CIS 4.1.2 (consistencia)",
             "evidence": "; ".join(dups),
-            "remediation": "Eliminar duplicados con: ufw delete <número>",
+            "remediation": "ufw delete <número>",
             "timestamp": timestamp
         })
 
@@ -268,6 +292,8 @@ def run():
                 "id": "UFW-402",
                 "title": f"Conflicto allow/deny en el puerto {port}",
                 "severity": "alta",
+                "explanation": "Tener ALLOW y DENY simultáneos en un puerto genera resultados impredecibles.",
+                "cis_ref": "CIS Control 4.8",
                 "evidence": f"Acciones detectadas: {actions}",
                 "remediation": "Unificar reglas: usa ALLOW o DENY, no ambos.",
                 "timestamp": timestamp
@@ -287,12 +313,14 @@ def run():
             "id": "UFW-403",
             "title": "Reglas mal formadas o incompletas",
             "severity": "media",
+            "explanation": "Una regla mal construida puede permitir tráfico no deseado.",
+            "cis_ref": "CIS Control 4.8",
             "evidence": "; ".join(malformed),
             "remediation": "Recrear la regla correctamente.",
             "timestamp": timestamp
         })
 
-    # UFW-406 — Falta de protocolo (tcp/udp)
+    # UFW-406 — Falta de protocolo
     missing_proto = []
     for r in rules:
         rl = r.lower()
@@ -305,6 +333,8 @@ def run():
             "id": "UFW-406",
             "title": "Reglas sin especificar protocolo (tcp/udp)",
             "severity": "media",
+            "explanation": "No definir el protocolo impide aplicar políticas precisas.",
+            "cis_ref": "CIS Control 4.8",
             "evidence": "; ".join(missing_proto),
             "remediation": "Ejemplo: ufw allow 80/tcp",
             "timestamp": timestamp
@@ -319,7 +349,9 @@ def run():
             "id": "UFW-999",
             "title": "Configuración UFW segura",
             "severity": "info",
-            "evidence": "No se han encontrado problemas.",
+            "explanation": "No se detectaron configuraciones inseguras.",
+            "cis_ref": None,
+            "evidence": "No se encontraron problemas.",
             "remediation": "No se requiere acción.",
             "timestamp": timestamp
         })

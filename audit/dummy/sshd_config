@@ -1,11 +1,22 @@
-Port 22
+BAD_PERMISSIONS
+HostbasedAuthentication yes
+IgnoreRhosts no
+PermitUserEnvironment yes
 PermitRootLogin yes
+PermitEmptyPasswords yes
+MaxAuthTries 10
+LoginGraceTime 120
 PasswordAuthentication yes
-UsePAM yes
-Port 22
-PermitRootLogin yes
-ClientAliveInterval 10
-InvalidParam test
-PermitRootLogin no
-harvard
-exploit.cmd
+ChallengeResponseAuthentication yes
+PubkeyAuthentication no
+ClientAliveInterval 600
+ClientAliveCountMax 10
+AllowTcpForwarding yes
+GSSAPIAuthentication yes
+KexAlgorithms diffie-hellman-group1-sha1
+MACs hmac-sha1
+Ciphers aes128-cbc,3des-cbc
+MaxSessions 50
+LogLevel debug
+UsePAM no
+X11Forwarding yes

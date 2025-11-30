@@ -1,120 +1,691 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Informe de Auditoría de Seguridad</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; color: #333; }
-    h1, h2, h3 { color: #004C99; }
-    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
-    th { background-color: #004C99; color: white; }
-    .severity-critica { background-color: #ff7a7a; color:black; font-weight: bold; }
-    .severity-alta { background-color: #fddaa6; color:black; }
-    .severity-media { background-color: #fff2cc; color:black;}
-    .severity-baja { background-color: #d9ead3; color:black;}
-    .footer { text-align: center; font-size: 12px; color: #666; margin-top: 40px; }
-  </style>
+<meta charset="UTF-8">
+<title>Informe de Auditoría de Seguridad</title>
+
+<style>
+/* ===================== */
+/*   ESTILOS GENERALES   */
+/* ===================== */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #FFFFFF;
+    color: #111;
+    line-height: 1.5;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: #D40000; /* rojo profesional */
+    font-weight: 700;
+}
+
+/* Separadores */
+.section-divider {
+    border-bottom: 2px solid #D40000;
+    margin: 25px 0;
+}
+
+/* ===================== */
+/*  ESTILO DE TABLAS     */
+/* ===================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th {
+    background-color: #0B0B0B;
+    color: #FFF;
+    padding: 10px;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #CCC;
+}
+
+/* Severidades */
+.severity-critica { background-color: #FF4D4D; font-weight: bold; }
+.severity-alta    { background-color: #FFB84D; }
+.severity-media   { background-color: #FFF0B3; }
+.severity-baja    { background-color: #D6FFCC; }
+.severity-info    { background-color: #E2E2E2; }
+
+/* ===================== */
+/*  FINDING BLOCK        */
+/* ===================== */
+
+.finding-wrapper {
+    page-break-inside: avoid;
+    margin-bottom: 15px;
+}
+
+.finding-block {
+    background: #F7F7F7;
+    padding: 12px;
+    border-left: 6px solid #D40000;
+    border-radius: 4px;
+}
+
+.finding-block h3 {
+    margin-top: 0;
+}
+
+/* Pre formateado */
+pre {
+    background: #d8d8d8;
+    padding: 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+/* ===================== */
+/*  PORTADA / PLAYBOOKS  */
+/* ===================== */
+
+.cover-page {
+    text-align: center;
+    margin-top: 150px;
+    page-break-after: always;
+}
+
+.cover-title {
+    font-size: 38px;
+    font-weight: bold;
+    color: #D40000;
+    margin-bottom: 10px;
+}
+
+.cover-subtitle {
+    font-size: 20px;
+    color: #111;
+}
+
+.cover-meta {
+    margin-top: 40px;
+    color: #444;
+    font-size: 16px;
+}
+
+/* Índice */
+.toc-section {
+    page-break-after: always;
+}
+
+.toc-item {
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+</style>
 </head>
+
 <body>
-  <div style="text-align: center; margin-bottom: 30px;">
-  <div style="font-size: 18px; color: #004C99; font-weight: bold;">
-    Informe de Auditoría de Seguridad
+
+<!-- PORTADA -->
+<div class="cover-page">
+
+    <div class="cover-title">Informe de Auditoría de Seguridad</div>
+
+    <div class="cover-subtitle">
+        Sistema Analizado: Localhost
+    </div>
+
+    <div class="cover-meta">
+        <p>Fecha de generación: 2025-11-29 14:26:54</p>
+        <p>Versión del motor: 1.0</p>
+        <p>Clasificación: CONFIDENCIAL</p>
+    </div>
+
+    <div style="margin-top:120px; color:#D40000; font-size:14px;">
+        Auditoría automatizada · Red Team · Hardening · CIS Benchmark
+    </div>
+
+</div>
+
+<!-- INDICE -->
+<div class="toc-section">
+    <h2>Índice</h2>
+    <div class="section-divider"></div>
+
+    <p class="toc-item">1. Resumen de la Auditoría</p>
+    <p class="toc-item">2. Hallazgos</p>
+    <p class="toc-item">3. Remediaciones Detalladas</p>
+    <p class="toc-item">4. Playbooks de Seguridad</p>
+    <p class="toc-item">5. Conclusión Técnica</p>
+</div>
+
+<!-- RESUMEN -->
+<section>
+    <h2>Resumen de la Auditoría</h2>
+    <div class="section-divider"></div>
+
+    <p>Este informe resume los hallazgos detectados durante el análisis automatizado de seguridad.</p>
+
+    <table>
+        <tr>
+            <th>Severidad</th>
+            <th>Recuento</th>
+        </tr>
+        <tr>
+            <td class="severity-critica">Crítica</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td class="severity-alta">Alta</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td class="severity-media">Media</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td class="severity-baja">Baja</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td class="severity-info">Info</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>7</th>
+        </tr>
+    </table>
+
+    <p>Las secciones posteriores detallan los hallazgos, su impacto técnico, indicadores asociados y recomendaciones completas de remediación.</p>
+
+</section>
+
+<!-- HALLAZGOS -->
+<h2>Hallazgos</h2>
+<div class="section-divider"></div>
+
+
+    
+        <section class="module-section">
+
+<h2></h2>
+
+
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-101 — Firewall UFW desactivado
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> CIS 4.1.1, STIG UBTU-24-102010</p>
+      
+
+      <p><strong>Severidad:</strong> ALTA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Si UFW está desactivado, no se aplica ningún control de tráfico, dejando el sistema completamente expuesto.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+Estado: inactive
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+ufw enable
+      </pre>
   </div>
-  <p>Generado el 2025-11-26 18:45:15</p>
-  <p><strong>Sistema analizado:</strong> Localhost</p>
-  <hr style="border: 1px solid #004C99;">
-</div>
-  <div style="margin-bottom: 40px;">
-  <h2>Resumen Ejecutivo</h2>
-  <table style="width: 60%; margin: auto;">
-    <tr style="background-color: #004C99; color: white;">
-      <th>Alta</th>
-      <th>Media</th>
-      <th>Baja</th>
-      <th>Info</th>
-      <th>Total</th>
-    </tr>
-    <tr style="text-align: center;">
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>4</td>
-    </tr>
-  </table>
-</div>
-  
-    
-        <div style="margin-bottom: 40px;">
-  <h2 style="color: #004C99;">Módulo: UFW</h2>
-  <p>Resultados del análisis del módulo ufw_check.</p>
-  
-  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-  <thead>
-    <tr style="background-color: #004C99; color: white;">
-      <th>ID</th>
-      <th>Título</th>
-      <th>Severidad</th>
-      <th>Evidencia</th>
-      <th>Remediación</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr class="severity-critica">
-      <td>UFW-301</td>
-      <td>Regla ALLOW sin LIMIT (incumple STIG 600200)</td>
-      <td>Critica</td>
-      <td>Anywhere ALLOW Anywhere</td>
-      <td>Ejecutar: ufw limit None/tcp</td>
-    </tr>
-    
-    <tr class="severity-critica">
-      <td>UFW-302</td>
-      <td>Regla demasiado permisiva (ANY/ANY)</td>
-      <td>Critica</td>
-      <td>Anywhere ALLOW Anywhere</td>
-      <td>Restringir la regla a IPs específicas.</td>
-    </tr>
-    
-    <tr class="severity-media">
-      <td>UFW-305</td>
-      <td>Regla sin puerto definido</td>
-      <td>Media</td>
-      <td>Anywhere ALLOW Anywhere</td>
-      <td>Especificar el puerto en la regla.</td>
-    </tr>
-    
-    <tr class="severity-media">
-      <td>UFW-403</td>
-      <td>Reglas mal formadas o incompletas</td>
-      <td>Media</td>
-      <td>Anywhere ALLOW Anywhere</td>
-      <td>Recrear la regla correctamente.</td>
-    </tr>
-    
-  </tbody>
-</table>
 </div>
     
-  
-  <div style="margin-top: 40px;">
-  <h2>Conclusiones</h2>
-  <p>Informe específico del módulo UFW.</p>
-  
-  <ul>
-    
-      <li>Revisar las configuraciones detectadas.</li>
-    
-      <li>Aplicar buenas prácticas de seguridad según los hallazgos.</li>
-    
-  </ul>
-  
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-301 — Regla ALLOW sin LIMIT
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
+      
+
+      <p><strong>Severidad:</strong> CRITICA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+80/tcp                     ALLow       192.168.1.5
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+ufw limit 80/tcp
+      </pre>
+  </div>
 </div>
-  <footer style="text-align: center; margin-top: 50px; color: #666; font-size: 12px;">
-  <hr style="border: 0.5px solid #004C99;">
-  <p><i>Generado automáticamente por el Sistema de Auditoría Automatizada.</i></p>
-</footer>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-301 — Regla ALLOW sin LIMIT
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
+      
+
+      <p><strong>Severidad:</strong> CRITICA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+80/tcp                     ALLow       192.168.1.5
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+ufw limit 80/tcp
+      </pre>
+  </div>
+</div>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-301 — Regla ALLOW sin LIMIT
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
+      
+
+      <p><strong>Severidad:</strong> CRITICA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+22                     ALLow       192.168.1.5
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+ufw limit 22/tcp
+      </pre>
+  </div>
+</div>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-301 — Regla ALLOW sin LIMIT
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
+      
+
+      <p><strong>Severidad:</strong> CRITICA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+22/tcp                     ALLow       192.168.1.5
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+ufw limit 22/tcp
+      </pre>
+  </div>
+</div>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-401 — Reglas duplicadas detectadas
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> CIS 4.1.2 (consistencia)</p>
+      
+
+      <p><strong>Severidad:</strong> MEDIA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Las reglas duplicadas pueden generar comportamientos inconsistentes.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+80/tcp                     ALLow       192.168.1.5
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+ufw delete &lt;número&gt;
+      </pre>
+  </div>
+</div>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-406 — Reglas sin especificar protocolo (tcp/udp)
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> CIS Control 4.8</p>
+      
+
+      <p><strong>Severidad:</strong> MEDIA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          No definir el protocolo impide aplicar políticas precisas.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+22                     ALLow       192.168.1.5
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+Ejemplo: ufw allow 80/tcp
+      </pre>
+  </div>
+</div>
+    
+
+
+</section>
+    
+
+
+<!-- REMEDIACIONES DETALLADAS -->
+<section>
+    <h2>Remediaciones Detalladas</h2>
+    <div class="section-divider"></div>
+
+    <p>
+        Esta sección proporciona instrucciones extensas y completas para corregir cada hallazgo,
+        incluyendo impacto técnico, pasos detallados y validaciones posteriores.
+    </p>
+
+    
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-101 — Firewall UFW desactivado</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Si UFW está desactivado, no se aplica ningún control de tráfico, dejando el sistema completamente expuesto.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Activar el firewall UFW:
+   sudo ufw enable
+
+2. Configurar políticas seguras:
+   sudo ufw default deny incoming
+   sudo ufw default allow outgoing
+
+3. Habilitar logging seguro:
+   sudo ufw logging on
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status verbose --> Debe mostrarse: Status: active</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Convertir ALLOW en LIMIT:
+   sudo ufw delete &lt;número_regla&gt;
+   sudo ufw limit 80/tcp
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status verbose | grep -E &#34;^80(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 80.</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Convertir ALLOW en LIMIT:
+   sudo ufw delete &lt;número_regla&gt;
+   sudo ufw limit 80/tcp
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status verbose | grep -E &#34;^80(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 80.</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Convertir ALLOW en LIMIT:
+   sudo ufw delete &lt;número_regla&gt;
+   sudo ufw limit 22/tcp
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status verbose | grep -E &#34;^22(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 22.</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Convertir ALLOW en LIMIT:
+   sudo ufw delete &lt;número_regla&gt;
+   sudo ufw limit 22/tcp
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status verbose | grep -E &#34;^22(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 22.</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-401 — Reglas duplicadas detectadas</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Las reglas duplicadas pueden generar comportamientos inconsistentes.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Eliminar reglas duplicadas:
+   sudo ufw status numbered
+   sudo ufw delete &lt;num&gt;
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status numbered --> No deben existir reglas duplicadas.</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-406 — Reglas sin especificar protocolo (tcp/udp)</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>No definir el protocolo impide aplicar políticas precisas.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Reglas sin protocolo detectadas:
+   22                     allow       192.168.1.5
+
+2. Recrear especificando tcp/udp:
+   sudo ufw allow 22/tcp
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status verbose | grep -E &#34;^22(/tcp|/udp)?\s&#34; --> Las reglas deben mostrar el protocolo explícitamente.</pre>
+
+                
+
+            </div>
+
+        
+    
+</section>
+
+<!-- PLAYBOOKS -->
+<section>
+    <h2>Playbooks de Seguridad</h2>
+    <div class="section-divider"></div>
+
+    <p>
+        Esta sección presenta escenarios de explotación y defensa basados en los hallazgos detectados.
+        Los playbooks están construidos usando tácticas MITRE ATT&CK, Kill Chain y técnicas de Red Team.
+    </p>
+
+    <h3>Playbook SSH</h3>
+    <pre>
+Táctica: Initial Access
+Técnica: T1110 — Password Brute Force
+
+1. Descubrimiento de servicio:
+   nmap -p 22 Localhost
+
+2. Ataque de fuerza bruta:
+   hydra -l root -P rockyou.txt ssh://Localhost
+
+3. Pivoting si AllowTcpForwarding = yes:
+   ssh -L 3306:localhost:3306 user@Localhost
+
+4. Persistencia:
+   echo "clave_maliciosa" >> ~/.ssh/authorized_keys
+    </pre>
+
+    <h3>Playbook Firewall (UFW)</h3>
+    <pre>
+Escenario: Puerto crítico expuesto
+
+1. Detección:
+   nmap -sV -p 3306,6379,27017 Localhost
+
+2. Explotación:
+   Conectar al servicio expuesto con credenciales débiles.
+
+3. Elevación:
+   Explotar service misconfigurations.
+
+4. Defensa:
+   ufw deny 3306
+    </pre>
+
+</section>
+
+<!-- CONCLUSION -->
+<section>
+    <h2>Conclusión Técnica</h2>
+    <div class="section-divider"></div>
+
+    <p>
+        El análisis realizado ha permitido identificar configuraciones inseguras, servicios expuestos
+        y parámetros críticos que requieren remediación prioritaria.
+        La combinación de hallazgos indica un riesgo operativo significativo si no se implementan
+        las acciones de mitigación proporcionadas.
+    </p>
+
+    <p>
+        Se recomienda priorizar las remediaciones de severidad <strong>Crítica</strong> y <strong>Alta</strong>,
+        ya que representan rutas directas de compromiso del sistema. Una vez implementadas las correcciones,
+        puede ejecutarse un nuevo análisis para verificar la efectividad del endurecimiento.
+    </p>
+
+    <p>
+        Este informe proporciona una base sólida para el hardening continuo del entorno,
+        permitiendo avanzar hacia un sistema alineado con CIS Benchmark y mejores prácticas de la industria.
+    </p>
+</section>
+
 </body>
 </html>

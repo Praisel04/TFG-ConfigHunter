@@ -1,56 +1,295 @@
 {
-    "generated_on": "2025-11-26 18:45:15",
+    "generated_on": "2025-11-30 21:58:25",
     "system_name": "Localhost",
     "summary": {
-        "critica": 2,
-        "alta": 0,
-        "media": 2,
+        "critica": 5,
+        "alta": 9,
+        "media": 12,
         "baja": 0,
         "info": 0,
-        "total": 4
+        "total": 26
     },
     "modules": [
+        {
+            "name": "SSH",
+            "description": "Resultados del análisis del módulo ssh_check.",
+            "findings": [
+                {
+                    "id": "CHK-SSH-1",
+                    "cis_ref": "5.1.1",
+                    "title": "Permisos inseguros en sshd_config",
+                    "severity": "alta",
+                    "evidence": "Archivo dummy contiene BAD_PERMISSIONS",
+                    "remediation": "chmod 600 /etc/ssh/sshd_config",
+                    "explanation": "Permisos incorrectos permiten modificar configuración crítica de SSH.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-4",
+                    "cis_ref": "5.1.4",
+                    "title": "Falta AllowUsers o AllowGroups",
+                    "severity": "media",
+                    "evidence": "No se encontró ninguna línea AllowUsers ni AllowGroups",
+                    "remediation": "Añadir AllowUsers <usuario>",
+                    "explanation": "Limitar usuarios reduce superficie de ataque.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-5",
+                    "cis_ref": "5.1.5",
+                    "title": "SSH Banner no configurado",
+                    "severity": "media",
+                    "evidence": "No se encontró parámetro Banner",
+                    "remediation": "Añadir Banner /etc/issue.net",
+                    "explanation": "Un banner legal advierte sobre uso no autorizado.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-6",
+                    "cis_ref": "5.1.6",
+                    "title": "Ciphers inseguros detectados",
+                    "severity": "alta",
+                    "evidence": "Se encontró el cipher inseguro: aes128-cbc",
+                    "remediation": "Ciphers aes256-ctr,aes192-ctr,aes128-ctr",
+                    "explanation": "Los cifrados CBC son débiles frente a ataques conocidos.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-7",
+                    "cis_ref": "5.1.7",
+                    "title": "ClientAliveInterval demasiado alto",
+                    "severity": "media",
+                    "evidence": "Línea 12: ClientAliveInterval 600",
+                    "remediation": "ClientAliveInterval 300",
+                    "explanation": "Valores altos retrasan tiempo de detección de sesiones muertas.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-7",
+                    "cis_ref": "5.1.7",
+                    "title": "ClientAliveCountMax demasiado alto",
+                    "severity": "media",
+                    "evidence": "Línea 13: ClientAliveCountMax 10",
+                    "remediation": "ClientAliveCountMax 3",
+                    "explanation": "Evita mantener sesiones inactivas por demasiado tiempo.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-8",
+                    "cis_ref": "5.1.8",
+                    "title": "AllowTcpForwarding debe estar en 'no'",
+                    "severity": "alta",
+                    "evidence": "Línea 14: AllowTcpForwarding yes",
+                    "remediation": "AllowTcpForwarding no",
+                    "explanation": "Evita tunelización no autorizada.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-9",
+                    "cis_ref": "5.1.9",
+                    "title": "GSSAPIAuthentication debe estar en 'no'",
+                    "severity": "media",
+                    "evidence": "Línea 15: GSSAPIAuthentication yes",
+                    "remediation": "GSSAPIAuthentication no",
+                    "explanation": "Reduce superficie de ataque en autenticación.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-10",
+                    "cis_ref": "5.1.10",
+                    "title": "HostbasedAuthentication debe estar en 'no'",
+                    "severity": "alta",
+                    "evidence": "Línea 2: HostbasedAuthentication yes",
+                    "remediation": "HostbasedAuthentication no",
+                    "explanation": "Evita autenticación basada en confianza entre hosts.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-11",
+                    "cis_ref": "5.1.11",
+                    "title": "IgnoreRhosts debe estar en 'yes'",
+                    "severity": "alta",
+                    "evidence": "Línea 3: IgnoreRhosts no",
+                    "remediation": "IgnoreRhosts yes",
+                    "explanation": "Los archivos rhosts son altamente inseguros.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-13",
+                    "cis_ref": "5.1.13",
+                    "title": "LoginGraceTime debe ser 60 o menos",
+                    "severity": "alta",
+                    "evidence": "Línea 8: LoginGraceTime 120",
+                    "remediation": "LoginGraceTime 60",
+                    "explanation": "Reduce ventana para ataques de fuerza bruta.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-14",
+                    "cis_ref": "5.1.14",
+                    "title": "LogLevel incorrecto",
+                    "severity": "media",
+                    "evidence": "Línea 20: LogLevel debug",
+                    "remediation": "LogLevel INFO",
+                    "explanation": "Nivel adecuado permite registrar actividad sospechosa.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-16",
+                    "cis_ref": "5.1.16",
+                    "title": "MaxAuthTries demasiado alto",
+                    "severity": "alta",
+                    "evidence": "Línea 7: MaxAuthTries 10",
+                    "remediation": "MaxAuthTries 4",
+                    "explanation": "Evita ataques de fuerza bruta.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-17",
+                    "cis_ref": "5.1.17",
+                    "title": "MaxSessions demasiado alto",
+                    "severity": "media",
+                    "evidence": "Línea 19: MaxSessions 50",
+                    "remediation": "MaxSessions 10",
+                    "explanation": "Evita abuso de sesiones múltiples.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-19",
+                    "cis_ref": "5.1.19",
+                    "title": "PermitEmptyPasswords debe ser 'no'",
+                    "severity": "alta",
+                    "evidence": "Línea 6: PermitEmptyPasswords yes",
+                    "remediation": "PermitEmptyPasswords no",
+                    "explanation": "Evita sesiones sin contraseña.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-20",
+                    "cis_ref": "5.1.20",
+                    "title": "PermitRootLogin debe estar en 'no'",
+                    "severity": "critica",
+                    "evidence": "Línea 5: PermitRootLogin yes",
+                    "remediation": "PermitRootLogin no",
+                    "explanation": "Evita accesos directos al usuario root.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-21",
+                    "cis_ref": "5.1.21",
+                    "title": "PermitUserEnvironment debe estar en 'no'",
+                    "severity": "media",
+                    "evidence": "Línea 4: PermitUserEnvironment yes",
+                    "remediation": "PermitUserEnvironment no",
+                    "explanation": "Evita carga de configuraciones maliciosas.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-22",
+                    "cis_ref": "5.1.22",
+                    "title": "UsePAM debe estar en 'yes'",
+                    "severity": "media",
+                    "evidence": "Línea 21: UsePAM no",
+                    "remediation": "UsePAM yes",
+                    "explanation": "PAM añade controles avanzados de autenticación.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                },
+                {
+                    "id": "CHK-SSH-18",
+                    "cis_ref": "5.1.18",
+                    "title": "MaxStartups no definido",
+                    "severity": "media",
+                    "evidence": "Parámetro no encontrado en sshd_config",
+                    "remediation": "MaxStartups 10:30:60",
+                    "explanation": "Evita DoS mediante conexiones simultáneas.",
+                    "timestamp": "2025-11-30T21:58:25.620897"
+                }
+            ]
+        },
         {
             "name": "UFW",
             "description": "Resultados del análisis del módulo ufw_check.",
             "findings": [
                 {
+                    "id": "UFW-101",
+                    "title": "Firewall UFW desactivado",
+                    "severity": "alta",
+                    "explanation": "Si UFW está desactivado, no se aplica ningún control de tráfico, dejando el sistema completamente expuesto.",
+                    "cis_ref": "CIS 4.1.1, STIG UBTU-24-102010",
+                    "evidence": "Estado: inactive",
+                    "remediation": "ufw enable",
+                    "timestamp": "2025-11-30T21:58:25.629104"
+                },
+                {
                     "id": "UFW-301",
-                    "title": "Regla ALLOW sin LIMIT (incumple STIG 600200)",
+                    "title": "Regla ALLOW sin LIMIT",
                     "severity": "critica",
-                    "evidence": "Anywhere ALLOW Anywhere",
-                    "remediation": "Ejecutar: ufw limit None/tcp",
-                    "timestamp": "2025-11-26T18:45:15.741862"
+                    "explanation": "Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.",
+                    "cis_ref": "CIS Control 4.6, STIG UBTU-24-600200",
+                    "evidence": "80/tcp                     ALLow       192.168.1.5",
+                    "remediation": "ufw limit 80/tcp",
+                    "timestamp": "2025-11-30T21:58:25.629104"
                 },
                 {
-                    "id": "UFW-302",
-                    "title": "Regla demasiado permisiva (ANY/ANY)",
+                    "id": "UFW-301",
+                    "title": "Regla ALLOW sin LIMIT",
                     "severity": "critica",
-                    "evidence": "Anywhere ALLOW Anywhere",
-                    "remediation": "Restringir la regla a IPs específicas.",
-                    "timestamp": "2025-11-26T18:45:15.741862"
+                    "explanation": "Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.",
+                    "cis_ref": "CIS Control 4.6, STIG UBTU-24-600200",
+                    "evidence": "80/tcp                     ALLow       192.168.1.5",
+                    "remediation": "ufw limit 80/tcp",
+                    "timestamp": "2025-11-30T21:58:25.629104"
                 },
                 {
-                    "id": "UFW-305",
-                    "title": "Regla sin puerto definido",
-                    "severity": "media",
-                    "evidence": "Anywhere ALLOW Anywhere",
-                    "remediation": "Especificar el puerto en la regla.",
-                    "timestamp": "2025-11-26T18:45:15.741862"
+                    "id": "UFW-301",
+                    "title": "Regla ALLOW sin LIMIT",
+                    "severity": "critica",
+                    "explanation": "Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.",
+                    "cis_ref": "CIS Control 4.6, STIG UBTU-24-600200",
+                    "evidence": "22                     ALLow       192.168.1.5",
+                    "remediation": "ufw limit 22/tcp",
+                    "timestamp": "2025-11-30T21:58:25.629104"
                 },
                 {
-                    "id": "UFW-403",
-                    "title": "Reglas mal formadas o incompletas",
+                    "id": "UFW-301",
+                    "title": "Regla ALLOW sin LIMIT",
+                    "severity": "critica",
+                    "explanation": "Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.",
+                    "cis_ref": "CIS Control 4.6, STIG UBTU-24-600200",
+                    "evidence": "22/tcp                     ALLow       192.168.1.5",
+                    "remediation": "ufw limit 22/tcp",
+                    "timestamp": "2025-11-30T21:58:25.629104"
+                },
+                {
+                    "id": "UFW-401",
+                    "title": "Reglas duplicadas detectadas",
                     "severity": "media",
-                    "evidence": "Anywhere ALLOW Anywhere",
-                    "remediation": "Recrear la regla correctamente.",
-                    "timestamp": "2025-11-26T18:45:15.741862"
+                    "explanation": "Las reglas duplicadas pueden generar comportamientos inconsistentes.",
+                    "cis_ref": "CIS 4.1.2 (consistencia)",
+                    "evidence": "80/tcp                     ALLow       192.168.1.5",
+                    "remediation": "ufw delete <número>",
+                    "timestamp": "2025-11-30T21:58:25.629104"
+                },
+                {
+                    "id": "UFW-406",
+                    "title": "Reglas sin especificar protocolo (tcp/udp)",
+                    "severity": "media",
+                    "explanation": "No definir el protocolo impide aplicar políticas precisas.",
+                    "cis_ref": "CIS Control 4.8",
+                    "evidence": "22                     ALLow       192.168.1.5",
+                    "remediation": "Ejemplo: ufw allow 80/tcp",
+                    "timestamp": "2025-11-30T21:58:25.629104"
                 }
             ]
+        },
+        {
+            "name": "VALIDATOR",
+            "description": "Resultados del análisis del módulo validator_check.",
+            "findings": []
         }
     ],
     "conclusion": {
-        "summary": "Informe específico del módulo UFW.",
+        "summary": "Informe completo de todos los módulos.",
         "recommendations": [
             "Revisar las configuraciones detectadas.",
             "Aplicar buenas prácticas de seguridad según los hallazgos."

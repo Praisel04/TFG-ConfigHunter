@@ -1,0 +1,34 @@
+<section>
+    <h2>Remediaciones Detalladas</h2>
+    <div class="section-divider"></div>
+
+    <p>
+        Esta sección proporciona instrucciones extensas y completas para corregir cada hallazgo,
+        incluyendo impacto técnico, pasos detallados y validaciones posteriores.
+    </p>
+
+    {% for module in modules %}
+        {% for finding in module.findings %}
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>{{ finding.id }} — {{ finding.title }}</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>{{ finding.extended.impacto }}</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>{{ finding.extended.pasos }}</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>{{ finding.extended.validacion }} --> {{ finding.extended.resultado }}</pre>
+
+                
+
+            </div>
+
+        {% endfor %}
+    {% endfor %}
+</section>

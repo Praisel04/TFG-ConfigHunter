@@ -1,17 +1,13 @@
-Status: Active
-Default: Deny (incoming)
-Default: Allow (outgoing)
-
+Status: inactive
 Logging: on
+Default: deny (incoming), allow (outgoing)
 
 To                         Action      From
 --                         ------      ----
-Anywhere ALLOW Anywhere
+80/tcp                     ALLow       192.168.1.5
+80/tcp                     ALLow       192.168.1.5   
 
+22                     ALLow       192.168.1.5
+22/tcp                     ALLow       192.168.1.5 
 
-
-
-
-
-
-
+22 0.0.0.0/0

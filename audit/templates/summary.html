@@ -1,19 +1,40 @@
-<div style="margin-bottom: 40px;">
-  <h2>Resumen Ejecutivo</h2>
-  <table style="width: 60%; margin: auto;">
-    <tr style="background-color: #004C99; color: white;">
-      <th>Alta</th>
-      <th>Media</th>
-      <th>Baja</th>
-      <th>Info</th>
-      <th>Total</th>
-    </tr>
-    <tr style="text-align: center;">
-      <td>{{ summary.alta }}</td>
-      <td>{{ summary.media }}</td>
-      <td>{{ summary.baja }}</td>
-      <td>{{ summary.info }}</td>
-      <td>{{ summary.total }}</td>
-    </tr>
-  </table>
-</div>
+<section>
+    <h2>Resumen de la Auditoría</h2>
+    <div class="section-divider"></div>
+
+    <p>Este informe resume los hallazgos detectados durante el análisis automatizado de seguridad.</p>
+
+    <table>
+        <tr>
+            <th>Severidad</th>
+            <th>Recuento</th>
+        </tr>
+        <tr>
+            <td class="severity-critica">Crítica</td>
+            <td>{{ summary.critica }}</td>
+        </tr>
+        <tr>
+            <td class="severity-alta">Alta</td>
+            <td>{{ summary.alta }}</td>
+        </tr>
+        <tr>
+            <td class="severity-media">Media</td>
+            <td>{{ summary.media }}</td>
+        </tr>
+        <tr>
+            <td class="severity-baja">Baja</td>
+            <td>{{ summary.baja }}</td>
+        </tr>
+        <tr>
+            <td class="severity-info">Info</td>
+            <td>{{ summary.info }}</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>{{ summary.total }}</th>
+        </tr>
+    </table>
+
+    <p>Las secciones posteriores detallan los hallazgos, su impacto técnico, indicadores asociados y recomendaciones completas de remediación.</p>
+
+</section>

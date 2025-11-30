@@ -1,6 +1,13 @@
-<div style="margin-bottom: 40px;">
-  <h2 style="color: #004C99;">Módulo: {{ module.name }}</h2>
-  <p>{{ module.description }}</p>
-  {% set findings = module.findings %}
-  {% include 'findings_table.html' %}
-</div>
+<section class="module-section">
+
+<h2>{{ module.title }}</h2>
+
+{% if module.findings|length == 0 %}
+    <p>No se encontraron hallazgos en este módulo.</p>
+{% else %}
+    {% for finding in module.findings %}
+        {% include 'finding_block.html' %}
+    {% endfor %}
+{% endif %}
+
+</section>

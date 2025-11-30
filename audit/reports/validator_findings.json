@@ -1,18 +1,1 @@
-[
-    {
-        "id": "CHK-GEN-001",
-        "title": "Parámetros duplicados globales",
-        "severity": "media",
-        "evidence": "Port: líneas 1, 5; PermitRootLogin: líneas 2, 6, 9",
-        "remediation": "Eliminar o consolidar parámetros repetidos para evitar conflictos.",
-        "timestamp": "2025-11-25T12:42:24.009047"
-    },
-    {
-        "id": "CHK-GEN-002",
-        "title": "Parámetros con valores conflictivos",
-        "severity": "alta",
-        "evidence": "PermitRootLogin: yes, yes, no (líneas 2, 6, 9)",
-        "remediation": "Mantener un único valor coherente para cada parámetro duplicado.",
-        "timestamp": "2025-11-25T12:42:24.009063"
-    }
-]
+[]
