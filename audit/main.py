@@ -68,7 +68,7 @@ def scan(module: str = typer.Argument(None, help="Nombre del módulo a escanear 
         except Exception as e:
             console.print(f"[bold red]Error ejecutando {mod_name}: {e}[/bold red]")
 
-    # Resumen general de severidades
+    # Resumen general
     summary = {"critica": 0, "alta": 0, "media": 0, "baja": 0, "info": 0}
     for f in all_findings:
         sev = f.get("severity", "").lower()
@@ -76,7 +76,6 @@ def scan(module: str = typer.Argument(None, help="Nombre del módulo a escanear 
             summary[sev] += 1
     summary["total"] = sum(summary.values())
 
-    # Conclusión personalizada según tipo de escaneo
     conclusion_text = (
         "Informe completo de todos los módulos."
         if not is_single_scan
@@ -122,13 +121,10 @@ def scan(module: str = typer.Argument(None, help="Nombre del módulo a escanear 
     # Generar PDF
     try:
         from utils.generate_pdf_from_html import generate_pdf_from_html
-
-        # Si el escaneo no es específico de un módulo, generamos el informe completo (ALL)
         pdf_module_name = "ALL" if not is_single_scan else module.upper()
 
         console.print("[cyan]→ Generando informe PDF...[/cyan]")
 
-        # La nueva función solo recibe el nombre del módulo
         generate_pdf_from_html(pdf_module_name)
 
         console.print("[green]✔ Informe PDF generado correctamente.[/green]\n")
@@ -136,9 +132,25 @@ def scan(module: str = typer.Argument(None, help="Nombre del módulo a escanear 
     except Exception as e:
         console.print(f"[red]Error generando PDF: {e}[/red]")
 
-
     console.print(f"[bold yellow]Resumen:[/bold yellow] {summary}")
     console.print("[bold cyan]=== ESCANEO COMPLETADO ===[/bold cyan]\n")
+
+    
+    #  NUEVA FUNCIÓN: PREGUNTAR SI SE QUIERE GENERAR PLAYBOOKS
+    
+
+    answer = input("¿Desea generar el Playbook forense y de Threat Hunting? (Y/N): ").strip().lower()
+
+    if answer == "y":
+        console.print("\n[cyan]→ Generando Playbook forense...\n[/cyan]")
+        try:
+            from utils.generate_playbook_report import generate_playbook_report
+            generate_playbook_report()
+            console.print("[green]✔ Playbook generado correctamente: reports/playbook.pdf[/green]\n")
+        except Exception as e:
+            console.print(f"[red]Error generando Playbook: {e}[/red]")
+    else:
+        console.print("[yellow]Playbook no generado.[/yellow]")
 
 
 @app.command()

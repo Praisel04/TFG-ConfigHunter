@@ -1,0 +1,67 @@
+<div class="block">
+    <h2>{{ h.title }}</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>{{ h.explanation_ext }}</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>{{ h.explanation }}</p>
+
+    <h3>Evidencia</h3>
+    <pre>{{ h.evidence }}</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>{{ h.exploitation }}</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        {% for m in h.mitre %}
+        <tr>
+            <td>{{ m.id }}</td>
+            <td>{{ m.name }}</td>
+            <td>{{ m.reason }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        {% for phase in h.killchain %}
+        <tr><td>{{ phase }}</td></tr>
+        {% endfor %}
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                {% for log in h.forensic.logs %}
+                    • {{ log }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                {% for item in h.forensic.artefacts %}
+                    • {{ item }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        {% for item in h.checklist %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>

@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Playbook de Análisis Forense - SSH</title>
+
+<style>
+/* ===================== */
+/*   ESTILOS GENERALES   */
+/* ===================== */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #FFFFFF;
+    color: #111;
+    line-height: 1.5;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: #D40000;
+    font-weight: 700;
+}
+
+/* Separador */
+.section-divider {
+    border-bottom: 2px solid #D40000;
+    margin: 25px 0;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th {
+    background-color: #0B0B0B;
+    color: #FFF;
+    padding: 10px;
+}
+td {
+    padding: 8px;
+    border: 1px solid #CCC;
+}
+
+/* Bloques */
+.block {
+    background: #F7F7F7;
+    padding: 12px;
+    border-left: 6px solid #D40000;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Pre formateado */
+pre {
+    background: #d8d8d8;
+    padding: 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+/* Portada */
+.cover-page {
+    text-align: center;
+    margin-top: 150px;
+    page-break-after: always;
+}
+.cover-title {
+    font-size: 38px;
+    font-weight: bold;
+    color: #D40000;
+}
+.cover-subtitle {
+    font-size: 20px;
+    color: #111;
+}
+.cover-meta {
+    margin-top: 40px;
+    color: #444;
+    font-size: 16px;
+}
+
+/* Índice */
+.toc-section {
+    page-break-after: always;
+}
+.toc-item {
+    font-size: 16px;
+    margin: 4px 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="cover-page">
+    <div class="cover-title">Playbook de Análisis Forense</div>
+
+    <div class="cover-subtitle">
+        Guía detallada de investigación y correlación MITRE basada en hallazgos SSH
+    </div>
+
+    <div class="cover-meta">
+        Generado automáticamente por GoAudit<br>
+        Fecha: 30/01/2026
+    </div>
+</div>
+
+<div class="toc-section">
+    <h2>Índice</h2>
+    <div class="section-divider"></div>
+
+    
+        <div class="toc-item">✔ 1 — WeakCiphers</div>
+    
+        <div class="toc-item">✔ 2 — ClientAliveConfig</div>
+    
+        <div class="toc-item">✔ 3 — AllowTcpForwarding</div>
+    
+        <div class="toc-item">✔ 4 — HostbasedAuthentication</div>
+    
+        <div class="toc-item">✔ 5 — IgnoreRhosts</div>
+    
+        <div class="toc-item">✔ 6 — MaxAuthTries</div>
+    
+        <div class="toc-item">✔ 7 — MaxSessions</div>
+    
+        <div class="toc-item">✔ 8 — PermitEmptyPasswords</div>
+    
+        <div class="toc-item">✔ 9 — PermitRootLogin</div>
+    
+        <div class="toc-item">✔ 10 — PermitUserEnvironment</div>
+    
+        <div class="toc-item">✔ 11 — MaxStartups</div>
+    
+</div>
+
+<h2>Playbook de Hallazgos</h2>
+<div class="section-divider"></div>
+
+
+    <div class="block">
+    <h2>WeakCiphers</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>El uso de cifrados débiles o CBC en SSH aumenta la probabilidad de ataques MITM y de descifrado parcial del tráfico. Es una vulnerabilidad seria en entornos corporativos.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Los cifrados CBC son débiles frente a ataques conocidos.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Se encontró el cipher inseguro: aes128-cbc</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>Un adversario puede realizar ataques de downgrade, interceptar tráfico o manipular la negociación del cifrado para obtener información sensible.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1557</td>
+            <td>Man-in-the-Middle</td>
+            <td>Cifrados débiles permiten interceptar tráfico SSH.</td>
+        </tr>
+        
+        <tr>
+            <td>T1040</td>
+            <td>Network Sniffing</td>
+            <td>Facilita descifrado de sesiones SSH.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Reconnaissance</td></tr>
+        
+        <tr><td>Weaponization</td></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Negociación de cifrados débiles.<br>
+                
+                    • Mensajes de error relacionados con MAC o algoritmos inseguros.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>ClientAliveConfig</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Valores demasiado altos permiten sesiones persistentes que pueden ser usadas como canales de C2 o mantener conexiones abiertas para actividades maliciosas.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Valores altos retrasan tiempo de detección de sesiones muertas.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 12: ClientAliveInterval 600
+Línea 13: ClientAliveCountMax 10</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>Un atacante puede mantener sesiones abiertas indefinidamente para establecer canales encubiertos de C2.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1071</td>
+            <td>C2 Communication</td>
+            <td>Sesiones largas facilitan canales C2 persistentes.</td>
+        </tr>
+        
+        <tr>
+            <td>T1499</td>
+            <td>Resource Exhaustion</td>
+            <td>Sesiones sin límite pueden saturar recursos.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Installation</td></tr>
+        
+        <tr><td>Command & Control</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Sesiones inactivas pero persistentes.<br>
+                
+                    • Conexiones mantenidas más allá del tiempo esperado.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>AllowTcpForwarding</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Permitir túneles SSH facilita el pivoting interno, el acceso a servicios que deberían ser privados y la exfiltración de datos sin ser detectado por firewalls.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita tunelización no autorizada.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 14: AllowTcpForwarding yes</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>El atacante crea túneles SSH para pivotar dentro de la red, exfiltrar datos o acceder a sistemas internos.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1572</td>
+            <td>Protocol Tunneling</td>
+            <td>Permite túneles para pivoting interno.</td>
+        </tr>
+        
+        <tr>
+            <td>T1090</td>
+            <td>Proxying</td>
+            <td>El atacante puede enrutar tráfico a otros sistemas internos.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+        <tr><td>Installation</td></tr>
+        
+        <tr><td>Command & Control</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Forwarded connections detectadas.<br>
+                
+                    • Acceso inesperado a puertos internos desde SSH.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>HostbasedAuthentication</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>La autenticación basada en confianza entre hosts puede ser manipulada por un atacante para moverse lateralmente aprovechando relaciones de confianza obsoletas o inseguras.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita autenticación basada en confianza entre hosts.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 2: HostbasedAuthentication yes</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>El atacante explota relaciones de confianza entre hosts para autenticarse sin contraseña.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1550</td>
+            <td>Use of Trusted Relationships</td>
+            <td>Autenticación basada en confianza entre hosts.</td>
+        </tr>
+        
+        <tr>
+            <td>T1078</td>
+            <td>Valid Accounts</td>
+            <td>Un atacante puede abusar del trust inter-host.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+        <tr><td>Lateral Movement</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Autenticación basada en host incorrecta.<br>
+                
+                    • Accesos desde hosts aparentemente confiables.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>IgnoreRhosts</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Si el sistema no ignora archivos rhosts, un atacante puede aprovechar configuraciones antiguas para autenticarse sin contraseña.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Los archivos rhosts son altamente inseguros.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 3: IgnoreRhosts no</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>Si rhosts está permitido, el atacante puede autenticarse desde un host falso configurando un archivo rhosts malicioso.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1550.003</td>
+            <td>Exploitation of rhosts</td>
+            <td>rhosts puede ser utilizado para acceso sin contraseña.</td>
+        </tr>
+        
+        <tr>
+            <td>T1078</td>
+            <td>Valid Accounts</td>
+            <td>Confianza heredada entre hosts vulnerables.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+        <tr><td>Lateral Movement</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Uso de rhosts para autenticación.<br>
+                
+                    • Intentos de login usando mecanismos obsoletos.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>MaxAuthTries</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Un número excesivo de intentos de autenticación permite a un atacante lanzar ataques de fuerza bruta durante más tiempo sin bloquear la cuenta.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita ataques de fuerza bruta.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 7: MaxAuthTries 10</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>Aumenta la ventana para ataques brute force, permitiendo miles de intentos desde un único origen.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1110</td>
+            <td>Brute Force</td>
+            <td>Aumenta ventana para ataques de credenciales automáticos.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Reconnaissance</td></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Múltiples intentos fallidos consecutivos desde una misma IP.<br>
+                
+                    • Picos de actividad inusual en autenticación.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>MaxSessions</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Permitir un número elevado de sesiones simultáneas facilita la ejecución paralela de comandos, exfiltración masiva o múltiples canales C2 dentro del mismo host.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita abuso de sesiones múltiples.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 19: MaxSessions 50</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>Un atacante puede abrir múltiples sesiones para ejecutar tareas paralelas o evadir detección.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1021</td>
+            <td>Remote Services</td>
+            <td>Permite múltiples conexiones SSH simultáneas.</td>
+        </tr>
+        
+        <tr>
+            <td>T1105</td>
+            <td>Exfiltration Over SSH</td>
+            <td>Puede usarse para múltiples flujos de datos paralelos.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Installation</td></tr>
+        
+        <tr><td>Command & Control</td></tr>
+        
+        <tr><td>Actions on Objectives</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Varios canales SSH abiertos en paralelo.<br>
+                
+                    • Sesiones activas persistentes o fuera de horario.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>PermitEmptyPasswords</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Permitir inicios de sesión sin contraseña elimina cualquier barrera de autenticación, permitiendo accesos automatizados no autorizados. Representa un riesgo crítico.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita sesiones sin contraseña.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 6: PermitEmptyPasswords yes</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>El atacante solo necesita identificar un usuario sin contraseña para obtener acceso inmediato al sistema.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1078</td>
+            <td>Valid Accounts</td>
+            <td>Cuentas sin contraseña permiten acceso directo.</td>
+        </tr>
+        
+        <tr>
+            <td>T1110</td>
+            <td>Brute Force</td>
+            <td>Elimina el proceso de autenticación, facilitando accesos automatizados.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+        <tr><td>Installation</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Inicios de sesión sin contraseña.<br>
+                
+                    • Usuarios sin contraseña detectados en /etc/shadow.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>PermitRootLogin</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Habilitar el acceso directo al usuario root permite a un atacante obtener control total del sistema sin requerir escalada de privilegios. Este es uno de los fallos más críticos en cualquier sistema Linux.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita accesos directos al usuario root.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 5: PermitRootLogin yes</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>Un atacante puede intentar credenciales filtradas, débiles o comunes para obtener acceso directo como root, sin necesidad de escalar privilegios.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1078</td>
+            <td>Valid Accounts</td>
+            <td>Acceso directo como root sin necesidad de elevación.</td>
+        </tr>
+        
+        <tr>
+            <td>T1110</td>
+            <td>Brute Force</td>
+            <td>Vulnerable a intentos automatizados sobre root.</td>
+        </tr>
+        
+        <tr>
+            <td>T1021</td>
+            <td>Remote Services</td>
+            <td>SSH permite acceso total al sistema como root.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Reconnaissance</td></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+        <tr><td>Installation</td></tr>
+        
+        <tr><td>Command & Control</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+                    • /var/log/secure<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Accesos root desde IPs externas.<br>
+                
+                    • Modificación de /root/.ssh/authorized_keys.<br>
+                
+                    • Cambios sospechosos en archivos de configuración.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>PermitUserEnvironment</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Permitir que el usuario cargue variables de entorno puede permitir la inyección de rutas o comandos maliciosos ejecutados por el servidor SSH.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita carga de configuraciones maliciosas.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 4: PermitUserEnvironment yes</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>El atacante introduce variables de entorno maliciosas que alteran rutas de ejecución o cargan código inapropiado.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1059</td>
+            <td>Command Execution</td>
+            <td>Variables maliciosas pueden ejecutar código.</td>
+        </tr>
+        
+        <tr>
+            <td>T1543</td>
+            <td>Modify System Processes</td>
+            <td>Puede manipular el entorno de ejecución de SSH.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+        <tr><td>Installation</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Variables de entorno sospechosas en sesiones SSH.<br>
+                
+                    • Cambios en el entorno de ejecución.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>MaxStartups</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Configuraciones incorrectas pueden permitir ataques DoS mediante creación masiva de conexiones SSH.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Evita DoS mediante conexiones simultáneas.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Parámetro no encontrado en sshd_config</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p>El atacante genera múltiples conexiones simultáneas para saturar SSH y provocar DoS.</p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        
+        <tr>
+            <td>T1499</td>
+            <td>Denial of Service</td>
+            <td>Valores incorrectos pueden permitir DoS contra SSH.</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+        <tr><td>Exploitation</td></tr>
+        
+        <tr><td>Denial of Service</td></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+                    • /var/log/auth.log<br>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+                    • Excesivas conexiones simultáneas al daemon SSH.<br>
+                
+                    • Indicadores de saturación o DoS.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+
+<h2>Fin del Playbook</h2>
+<div class="section-divider"></div>
+
+<p>
+Este documento recoge un análisis avanzado destinado a apoyar investigaciones
+forenses, threat hunting y respuesta ante incidentes basados en los hallazgos
+detectados durante la auditoría de seguridad SSH.
+</p>
+
+<p>
+Para remediaciones completas y validación posterior,
+consulte el informe principal generado por GoAudit.
+</p>
+
+</body>
+</html>

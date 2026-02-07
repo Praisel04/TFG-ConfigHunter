@@ -5,25 +5,30 @@ from pathlib import Path
 def generate_pdf_from_html(module_name="ALL"):
     """
     Convierte el HTML correcto a PDF según el módulo.
-    Gestiona correctamente:
-      - report.html (informe completo)
-      - SSH_Report.html
-      - UFW_Report.html
-      - VALIDATOR_Report.html
+
+    Añadido soporte especial para:
+      - playbook.html → playbook.pdf
     """
 
     base_path = Path(__file__).resolve().parent.parent
     reports_path = base_path / "reports"
 
-    # ===============================
-    # Selección correcta del archivo
-    # ===============================
-    if module_name == "ALL":
-        html_file = "report.html"
-        pdf_file = "report.pdf"
+    # =====================================================
+    # TRATAMIENTO ESPECIAL PARA PLAYBOOK
+    # =====================================================
+    if module_name.lower() == "playbook":
+        html_file = "playbook.html"
+        pdf_file = "playbook.pdf"
     else:
-        html_file = f"{module_name}_Report.html"
-        pdf_file = f"{module_name}_Report.pdf"
+        # ===============================================
+        # Módulos estándar (SSH, ALL, UFW, etc.)
+        # ===============================================
+        if module_name == "ALL":
+            html_file = "report.html"
+            pdf_file = "report.pdf"
+        else:
+            html_file = f"{module_name}_Report.html"
+            pdf_file = f"{module_name}_Report.pdf"
 
     html_path = reports_path / html_file
     pdf_path = reports_path / pdf_file
