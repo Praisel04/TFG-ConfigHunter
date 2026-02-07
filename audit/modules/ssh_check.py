@@ -82,15 +82,11 @@ def run():
     # 1. Cargar sshd_config (dummy o real)
     # -----------------------------------------------------------
 
-    dummy = Path("dummy/sshd_config")
+    dummy = Path("/etc/ssh/sshd_config")
     if dummy.exists():
         sshd_config_text = dummy.read_text(encoding="utf-8", errors="ignore")
     else:
-        real = Path("/etc/ssh/sshd_config")
-        if real.exists():
-            sshd_config_text = real.read_text(encoding="utf-8", errors="ignore")
-        else:
-            return [{
+        return [{
                 "id": "CHK-SSH-000",
                 "title": "No se encontró sshd_config",
                 "severity": "info",
@@ -221,7 +217,7 @@ def run():
     # CIS exige evitar estos cifrados:
     weak_ciphers = [
         "aes128-cbc", "3des-cbc", "blowfish-cbc",
-        "arcfour", "arcfour128", "arcfour256"
+        "arcfour", "arcfour128", "arcfour256", "aes192-cbc" ,"aes256-cbc"
     ]
 
     for wc in weak_ciphers:
@@ -281,22 +277,22 @@ def run():
          "IgnoreRhosts yes",
          "Los archivos rhosts son altamente inseguros."),
 
-        ("5.1.13", "LoginGraceTime", ["30","60"], "alta",
+        ("5.1.13", "LoginGraceTime", "60", "alta",
          "LoginGraceTime debe ser 60 o menos",
          "LoginGraceTime 60",
          "Reduce ventana para ataques de fuerza bruta."),
 
-        ("5.1.14", "LogLevel", ["info","verbose"], "media",
+        ("5.1.14", "LogLevel", ["verbose","info"], "media",
          "LogLevel incorrecto",
-         "LogLevel INFO",
+         "LogLevel info",
          "Nivel adecuado permite registrar actividad sospechosa."),
 
-        ("5.1.16", "MaxAuthTries", ["4"], "alta",
+        ("5.1.16", "MaxAuthTries", "4", "alta",
          "MaxAuthTries demasiado alto",
          "MaxAuthTries 4",
          "Evita ataques de fuerza bruta."),
 
-        ("5.1.17", "MaxSessions", ["10"], "media",
+        ("5.1.17", "MaxSessions", "10", "media",
          "MaxSessions demasiado alto",
          "MaxSessions 10",
          "Evita abuso de sesiones múltiples."),
@@ -344,6 +340,49 @@ def run():
 
         if not ok:
             add_finding(cisref, title, severity, evidence, remediation, explanation)
+
+    
+    # ----------------------------------------------------------
+    # 5.1.12 — KexAlgorithms
+    # ----------------------------------------------------------
+    
+    # CIS exige evitar estos algoritmos:
+    weak_kex = [
+        "diffie-hellman-group1-sha1", "diffie-hellman-group14-sha1", "diffie-hellman-group-exchange-sha1"
+    ]
+
+    for wk in weak_kex:
+        if wk in sshd_config_text.lower():
+            add_finding(
+                "5.1.12",
+                "KexAlgorithms inseguros detectados",
+                "alta",
+                f"Se encontró el KexAlgorithm inseguro: {wk}",
+                "KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256",
+                "Usar Algortimos Kex inseguros puedes exponer las conexiones a posibles ataques 'Man In The Middle'"
+            )
+            break
+
+    # ----------------------------------------------------------
+    # 5.1.15 — MACs
+    # ----------------------------------------------------------
+    
+    # CIS exige evitar estos algoritmos:
+    weak_mac = [
+        "hmac-md5","hmac-md5-96","hmac-ripemd160","hmac-sha1-96","umac-64@openssh.com","hmac-md5-etm@openssh.com","hmac-md5-96-etm@openssh.com","hmac-ripemd160-etm@openssh.com","hmac-sha1-96-etm@openssh.com","umac-64-etm@openssh.com","umac-128-etm@openssh.com"
+    ]
+
+    for wm in weak_mac:
+        if wm in sshd_config_text.lower():
+            add_finding(
+                "5.1.15",
+                "MACs inseguras detectadas",
+                "alta",
+                f"Se encontró Mac insegura: {wm}",
+                "MACs hmac-sha1,hmac-sha2-256,hmac-sha2-384,hmac-sha2-512",
+                "Usar algoritmos MAC débiles (MD5 o de 96 bits) puede permitir ataques de degradación para descifrar el túnel SSH y capturar credenciales e información sensible."
+            )
+            break
 
     # ----------------------------------------------------------
     # 5.1.18 — MaxStartups (solo se requiere que exista)

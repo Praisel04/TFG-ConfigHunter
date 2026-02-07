@@ -1,0 +1,3 @@
+Jan 10 12:33:21 hostname kernel: [UFW ALLOW] IN=eth0 OUT= MAC=aa:bb:cc:dd SRC=192.168.1.10 DST=192.168.1.20
+[UFW BLOC IN=eth0 OUT= MAC=aa:bb:cc:dd SRC=192.168.2.20
+Jan 10 12:34:55 hostname kernel: [UFW ALLOW] IN=eth0 OUT= MAC=aa:bb:cc:dd SRC=8.8.8.8 DST=192.168.1.20

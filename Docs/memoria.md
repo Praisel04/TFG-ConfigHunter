@@ -41,9 +41,34 @@ Nuevas decisiones. Informe general que incluya informacion de los hallazgos, rem
 Se ha configurado un motor de reglas avanzados para la explicacion detallada de la remediacion de los hallazgos. Se ha cambiado la estetica del PDF a una mas profesional y avanzada con colores adecuados.
 
 
+**07-02-2026**
+Se ha migrado con exito la herramienta a una máquina virtual Ubuntu 22.04
+Se ha comprobado el funcionamiento de la herramienta dentro de la MV.
+Se han corregido fallos en algunas rutas y en algunos puntos.
+Se ha modificado la plantilla especifica de ssh para la explicacion del reinicio del servicio sshd.
+Se han comprobado todos los puntos contemplados en la guia CIS.
+Añadidos los punto 5.12 y 5.15 de CIS en ssh_check.
+
 **COSAS POR HACER**
+
+**PRIORIDAD ALTA**
+COMPROBAR PERMISOS DE LA HERRAMIENTA, COMPROBAR LA CREACION DE LA CARPETA REPORTS COMO SUDO.
 1. Revisar la configuracion de ufw_check. 
-2. Revisar las reglas respecto al documento de CIS.
-3. Revisar la generación del PDF.
-4. Definir los playbooks
-5. Definir las tecnicas MITTRE y Kill Chain.
+2. Revisar las reglas UFW respecto al documento de CIS.
+
+
+**PRIORIDAD MEDIA**
+1. Definir los playbooks
+2. Definir las tecnicas MITTRE y Kill Chain.
+3. Terminar de construir el playbooks de información
+
+**PRIORIDAD BAJA**
+1. Revisar la generación del PDF. Corregir donde sale la parte de remediaciones avanzadas. Eliminar el apartado de playbook del PDF
+
+**OBJETIVOS DE FUTURO**
+CREAR PLAYBOOK REPRODUCIBLE DE REMEDIACIÓN CON UN SCRIPT.
+
+
+
+
+

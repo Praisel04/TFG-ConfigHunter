@@ -71,7 +71,7 @@ def build_extended_remediation(finding):
    {remediation}
 
 4. Recargar SSH (si aplica):
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 """
 
         validacion = """
@@ -95,7 +95,7 @@ Validación:
    Banner /etc/issue.net
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 """
         validacion = "sshd -T | grep banner"
         resultado = "Debe aparecer: banner /etc/issue.net"
@@ -115,7 +115,7 @@ Validación:
    {remediation}
 
 4. Recargar:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 """
         validacion = "sshd -T | grep clientalive"
         resultado = f"Debe verse: {remediation}"
@@ -135,14 +135,14 @@ Validación:
    {remediation}
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 """
         validacion = f"sshd -T | grep {param_detectado}"
         resultado = f"Debe aparecer: {remediation.split()[0]} {remediation.split()[1]}"
         return {"impacto": impacto, "pasos": pasos, "validacion": validacion, "resultado": resultado}
 
     # ============================================================
-    #              MOTOR UFW V3 — COBERTURA TOTAL
+    #                          MOTOR UFW V3 
     # ============================================================
 
     if finding["id"].startswith("UFW-"):

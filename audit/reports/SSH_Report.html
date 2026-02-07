@@ -139,7 +139,7 @@ pre {
     </div>
 
     <div class="cover-meta">
-        <p>Fecha de generación: 2025-11-29 14:27:09</p>
+        <p>Fecha de generación: 2026-02-07 18:05:44</p>
         <p>Versión del motor: 1.0</p>
         <p>Clasificación: CONFIDENCIAL</p>
     </div>
@@ -176,15 +176,15 @@ pre {
         </tr>
         <tr>
             <td class="severity-critica">Crítica</td>
-            <td>1</td>
+            <td>0</td>
         </tr>
         <tr>
             <td class="severity-alta">Alta</td>
-            <td>8</td>
+            <td>3</td>
         </tr>
         <tr>
             <td class="severity-media">Media</td>
-            <td>10</td>
+            <td>2</td>
         </tr>
         <tr>
             <td class="severity-baja">Baja</td>
@@ -196,7 +196,7 @@ pre {
         </tr>
         <tr>
             <th>Total</th>
-            <th>19</th>
+            <th>5</th>
         </tr>
     </table>
 
@@ -215,62 +215,6 @@ pre {
 <h2></h2>
 
 
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-1 — Permisos inseguros en sshd_config
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.1</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Permisos incorrectos permiten modificar configuración crítica de SSH.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Archivo dummy contiene BAD_PERMISSIONS
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-chmod 600 /etc/ssh/sshd_config
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-4 — Falta AllowUsers o AllowGroups
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.4</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Limitar usuarios reduce superficie de ataque.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-No se encontró ninguna línea AllowUsers ni AllowGroups
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-Añadir AllowUsers &lt;usuario&gt;
-      </pre>
-  </div>
-</div>
     
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
@@ -331,62 +275,6 @@ Ciphers aes256-ctr,aes192-ctr,aes128-ctr
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-7 — ClientAliveInterval demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.7</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Valores altos retrasan tiempo de detección de sesiones muertas.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 12: ClientAliveInterval 600
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ClientAliveInterval 300
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-7 — ClientAliveCountMax demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.7</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita mantener sesiones inactivas por demasiado tiempo.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 13: ClientAliveCountMax 10
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ClientAliveCountMax 3
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
           CHK-SSH-8 — AllowTcpForwarding debe estar en &#39;no&#39;
       </h3>
 
@@ -402,292 +290,12 @@ ClientAliveCountMax 3
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 14: AllowTcpForwarding yes
+Línea 126: AllowTcpForwarding yes
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
 AllowTcpForwarding no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-9 — GSSAPIAuthentication debe estar en &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.9</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Reduce superficie de ataque en autenticación.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 15: GSSAPIAuthentication yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-GSSAPIAuthentication no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-10 — HostbasedAuthentication debe estar en &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.10</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita autenticación basada en confianza entre hosts.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 2: HostbasedAuthentication yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-HostbasedAuthentication no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-11 — IgnoreRhosts debe estar en &#39;yes&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.11</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Los archivos rhosts son altamente inseguros.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 3: IgnoreRhosts no
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-IgnoreRhosts yes
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-13 — LoginGraceTime debe ser 60 o menos
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.13</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Reduce ventana para ataques de fuerza bruta.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 8: LoginGraceTime 120
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-LoginGraceTime 60
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-14 — LogLevel incorrecto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.14</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Nivel adecuado permite registrar actividad sospechosa.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 20: LogLevel debug
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-LogLevel INFO
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-16 — MaxAuthTries demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.16</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita ataques de fuerza bruta.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 7: MaxAuthTries 10
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-MaxAuthTries 4
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-17 — MaxSessions demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.17</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita abuso de sesiones múltiples.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 19: MaxSessions 50
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-MaxSessions 10
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-19 — PermitEmptyPasswords debe ser &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.19</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita sesiones sin contraseña.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 6: PermitEmptyPasswords yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-PermitEmptyPasswords no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-20 — PermitRootLogin debe estar en &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.20</p>
-      
-
-      <p><strong>Severidad:</strong> CRITICA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita accesos directos al usuario root.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 5: PermitRootLogin yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-PermitRootLogin no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-21 — PermitUserEnvironment debe estar en &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.21</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita carga de configuraciones maliciosas.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 4: PermitUserEnvironment yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-PermitUserEnvironment no
       </pre>
   </div>
 </div>
@@ -710,7 +318,7 @@ PermitUserEnvironment no
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 21: UsePAM no
+Línea 147: UsePAM no
       </pre>
 
       <p><strong>Recomendación:</strong></p>
@@ -723,27 +331,27 @@ UsePAM yes
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-18 — MaxStartups no definido
+          CHK-SSH-12 — KexAlgorithms inseguros detectados
       </h3>
 
       
-      <p><strong>Referencia CIS:</strong> 5.1.18</p>
+      <p><strong>Referencia CIS:</strong> 5.1.12</p>
       
 
-      <p><strong>Severidad:</strong> MEDIA</p>
+      <p><strong>Severidad:</strong> ALTA</p>
 
       <p><strong>Explicación breve:</strong><br>
-          Evita DoS mediante conexiones simultáneas.
+          Usar Algortimos Kex inseguros puedes exponer las conexiones a posibles ataques &#39;Man In The Middle&#39;
       </p>
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Parámetro no encontrado en sshd_config
+Se encontró el KexAlgorithm inseguro: diffie-hellman-group1-sha1
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-MaxStartups 10:30:60
+KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
       </pre>
   </div>
 </div>
@@ -768,76 +376,6 @@ MaxStartups 10:30:60
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-1 — Permisos inseguros en sshd_config</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Permisos incorrectos permiten modificar configuración crítica de SSH.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Revisar permisos actuales:
-   sudo ls -l /etc/ssh/
-
-2. Aplicar permisos seguros típicos:
-   sudo chmod 600 /etc/ssh/ssh_host_*
-   sudo chown root:root /etc/ssh/ssh_host_*
-
-3. Seguir las recomendaciones exactas:
-   chmod 600 /etc/ssh/sshd_config
-
-4. Recargar SSH (si aplica):
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>
-Validación:
-   sudo stat -c &#34;%a %U %G&#34; /etc/ssh/ssh_host_*
- --> Los archivos deben ser propiedad de root:root y con permisos 600.</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-4 — Falta AllowUsers o AllowGroups</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Limitar usuarios reduce superficie de ataque.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   no se encontró ninguna línea allowusers ni allowgroups
-
-3. Reemplazar por:
-   Añadir AllowUsers &lt;usuario&gt;
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep allowusers --> Debe aparecer: Añadir AllowUsers</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
                 <h3>CHK-SSH-5 — SSH Banner no configurado</h3>
 
                 <!-- IMPACTO -->
@@ -857,7 +395,7 @@ Validación:
    Banner /etc/issue.net
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
@@ -886,82 +424,16 @@ Validación:
 2. Localizar:
    se encontró el cipher inseguro: aes128-cbc
 
-3. Reemplazar por:
+3. Aplicar la recomendación:
    Ciphers aes256-ctr,aes192-ctr,aes128-ctr
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
                 <pre>sshd -T | grep ciphers --> Debe aparecer: Ciphers aes256-ctr,aes192-ctr,aes128-ctr</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-7 — ClientAliveInterval demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Valores altos retrasan tiempo de detección de sesiones muertas.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 12: clientaliveinterval 600
-
-3. Cambiar por:
-   ClientAliveInterval 300
-
-4. Recargar:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep clientalive --> Debe verse: ClientAliveInterval 300</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-7 — ClientAliveCountMax demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita mantener sesiones inactivas por demasiado tiempo.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 13: clientalivecountmax 10
-
-3. Cambiar por:
-   ClientAliveCountMax 3
-
-4. Recargar:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep clientalive --> Debe verse: ClientAliveCountMax 3</pre>
 
                 
 
@@ -983,348 +455,18 @@ Validación:
    sudo nano /etc/ssh/sshd_config
 
 2. Localizar:
-   línea 14: allowtcpforwarding yes
+   línea 126: allowtcpforwarding yes
 
-3. Reemplazar por:
+3. Aplicar la recomendación:
    AllowTcpForwarding no
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
                 <pre>sshd -T | grep allowtcpforwarding --> Debe aparecer: AllowTcpForwarding no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-9 — GSSAPIAuthentication debe estar en &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Reduce superficie de ataque en autenticación.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 15: gssapiauthentication yes
-
-3. Reemplazar por:
-   GSSAPIAuthentication no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep gssapiauthentication --> Debe aparecer: GSSAPIAuthentication no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-10 — HostbasedAuthentication debe estar en &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita autenticación basada en confianza entre hosts.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 2: hostbasedauthentication yes
-
-3. Reemplazar por:
-   HostbasedAuthentication no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep hostbasedauthentication --> Debe aparecer: HostbasedAuthentication no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-11 — IgnoreRhosts debe estar en &#39;yes&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Los archivos rhosts son altamente inseguros.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 3: ignorerhosts no
-
-3. Reemplazar por:
-   IgnoreRhosts yes
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep ignorerhosts --> Debe aparecer: IgnoreRhosts yes</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-13 — LoginGraceTime debe ser 60 o menos</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Reduce ventana para ataques de fuerza bruta.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 8: logingracetime 120
-
-3. Reemplazar por:
-   LoginGraceTime 60
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep logingracetime --> Debe aparecer: LoginGraceTime 60</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-14 — LogLevel incorrecto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Nivel adecuado permite registrar actividad sospechosa.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 20: loglevel debug
-
-3. Reemplazar por:
-   LogLevel INFO
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep loglevel --> Debe aparecer: LogLevel INFO</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-16 — MaxAuthTries demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita ataques de fuerza bruta.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 7: maxauthtries 10
-
-3. Reemplazar por:
-   MaxAuthTries 4
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep maxauthtries --> Debe aparecer: MaxAuthTries 4</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-17 — MaxSessions demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita abuso de sesiones múltiples.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 19: maxsessions 50
-
-3. Reemplazar por:
-   MaxSessions 10
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep maxsessions --> Debe aparecer: MaxSessions 10</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-19 — PermitEmptyPasswords debe ser &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita sesiones sin contraseña.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 6: permitemptypasswords yes
-
-3. Reemplazar por:
-   PermitEmptyPasswords no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep permitemptypasswords --> Debe aparecer: PermitEmptyPasswords no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-20 — PermitRootLogin debe estar en &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita accesos directos al usuario root.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 5: permitrootlogin yes
-
-3. Reemplazar por:
-   PermitRootLogin no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep permitrootlogin --> Debe aparecer: PermitRootLogin no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-21 — PermitUserEnvironment debe estar en &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita carga de configuraciones maliciosas.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 4: permituserenvironment yes
-
-3. Reemplazar por:
-   PermitUserEnvironment no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep permituserenvironment --> Debe aparecer: PermitUserEnvironment no</pre>
 
                 
 
@@ -1346,13 +488,13 @@ Validación:
    sudo nano /etc/ssh/sshd_config
 
 2. Localizar:
-   línea 21: usepam no
+   línea 147: usepam no
 
-3. Reemplazar por:
+3. Aplicar la recomendación:
    UsePAM yes
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
@@ -1366,31 +508,25 @@ Validación:
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-18 — MaxStartups no definido</h3>
+                <h3>CHK-SSH-12 — KexAlgorithms inseguros detectados</h3>
 
                 <!-- IMPACTO -->
                 <p><strong>Impacto técnico:</strong></p>
-                <p>Evita DoS mediante conexiones simultáneas.</p>
+                <p>Usar Algortimos Kex inseguros puedes exponer las conexiones a posibles ataques &#39;Man In The Middle&#39;</p>
 
                 <!-- PASOS DE REMEDIACIÓN -->
                 <p><strong>Pasos de remediación:</strong></p>
                 <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
+1. Revisar evidencia:
+   se encontró el kexalgorithm inseguro: diffie-hellman-group1-sha1
 
-2. Localizar:
-   parámetro no encontrado en sshd_config
-
-3. Reemplazar por:
-   MaxStartups 10:30:60
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
+2. Aplicar la recomendación:
+   KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep maxstartups --> Debe aparecer: MaxStartups 10:30:60</pre>
+                <pre>Validación manual requerida. --> Debe verificarse que el servicio funcione y el cambio está aplicado.</pre>
 
                 
 
