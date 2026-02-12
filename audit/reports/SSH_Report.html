@@ -139,7 +139,7 @@ pre {
     </div>
 
     <div class="cover-meta">
-        <p>Fecha de generación: 2026-02-07 18:05:44</p>
+        <p>Fecha de generación: 2026-02-09 12:06:12</p>
         <p>Versión del motor: 1.0</p>
         <p>Clasificación: CONFIDENCIAL</p>
     </div>
@@ -176,7 +176,7 @@ pre {
         </tr>
         <tr>
             <td class="severity-critica">Crítica</td>
-            <td>0</td>
+            <td>1</td>
         </tr>
         <tr>
             <td class="severity-alta">Alta</td>
@@ -196,7 +196,7 @@ pre {
         </tr>
         <tr>
             <th>Total</th>
-            <th>5</th>
+            <th>6</th>
         </tr>
     </table>
 
@@ -303,6 +303,34 @@ AllowTcpForwarding no
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
+          CHK-SSH-20 — PermitRootLogin debe estar en &#39;no&#39;
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> 5.1.20</p>
+      
+
+      <p><strong>Severidad:</strong> CRITICA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Evita accesos directos al usuario root.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+Línea 135: PermitRootLogin yes
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+PermitRootLogin no
+      </pre>
+  </div>
+</div>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
           CHK-SSH-22 — UsePAM debe estar en &#39;yes&#39;
       </h3>
 
@@ -400,7 +428,7 @@ KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-he
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep banner --> Debe aparecer: banner /etc/issue.net</pre>
+                <pre>sudo sshd -T | grep banner --> Debe aparecer: banner /etc/issue.net</pre>
 
                 
 
@@ -433,7 +461,7 @@ KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-he
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep ciphers --> Debe aparecer: Ciphers aes256-ctr,aes192-ctr,aes128-ctr</pre>
+                <pre>sudo sshd -T | grep ciphers --> Debe aparecer: Ciphers aes256-ctr,aes192-ctr,aes128-ctr</pre>
 
                 
 
@@ -466,7 +494,40 @@ KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-he
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep allowtcpforwarding --> Debe aparecer: AllowTcpForwarding no</pre>
+                <pre>sudo sshd -T | grep allowtcpforwarding --> Debe aparecer: AllowTcpForwarding no</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>CHK-SSH-20 — PermitRootLogin debe estar en &#39;no&#39;</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Evita accesos directos al usuario root.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Editar archivo SSH:
+   sudo nano /etc/ssh/sshd_config
+
+2. Localizar:
+   línea 135: permitrootlogin yes
+
+3. Aplicar la recomendación:
+   PermitRootLogin no
+
+4. Recargar SSH:
+   sudo systemctl restart sshd
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo sshd -T | grep permitrootlogin --> Debe aparecer: PermitRootLogin no</pre>
 
                 
 
@@ -499,7 +560,7 @@ KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-he
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep usepam --> Debe aparecer: UsePAM yes</pre>
+                <pre>sudo sshd -T | grep usepam --> Debe aparecer: UsePAM yes</pre>
 
                 
 
@@ -517,16 +578,22 @@ KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-he
                 <!-- PASOS DE REMEDIACIÓN -->
                 <p><strong>Pasos de remediación:</strong></p>
                 <pre>
-1. Revisar evidencia:
+1. Editar archivo SSH:
+   sudo nano /etc/ssh/sshd_config
+
+2. Localizar:
    se encontró el kexalgorithm inseguro: diffie-hellman-group1-sha1
 
-2. Aplicar la recomendación:
+3. Aplicar la recomendación:
    KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
+
+4. Recargar SSH:
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>Validación manual requerida. --> Debe verificarse que el servicio funcione y el cambio está aplicado.</pre>
+                <pre>sudo sshd -T | grep kexalgorithms --> Debe aparecer: KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256</pre>
 
                 
 
@@ -534,53 +601,6 @@ KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-he
 
         
     
-</section>
-
-<!-- PLAYBOOKS -->
-<section>
-    <h2>Playbooks de Seguridad</h2>
-    <div class="section-divider"></div>
-
-    <p>
-        Esta sección presenta escenarios de explotación y defensa basados en los hallazgos detectados.
-        Los playbooks están construidos usando tácticas MITRE ATT&CK, Kill Chain y técnicas de Red Team.
-    </p>
-
-    <h3>Playbook SSH</h3>
-    <pre>
-Táctica: Initial Access
-Técnica: T1110 — Password Brute Force
-
-1. Descubrimiento de servicio:
-   nmap -p 22 Localhost
-
-2. Ataque de fuerza bruta:
-   hydra -l root -P rockyou.txt ssh://Localhost
-
-3. Pivoting si AllowTcpForwarding = yes:
-   ssh -L 3306:localhost:3306 user@Localhost
-
-4. Persistencia:
-   echo "clave_maliciosa" >> ~/.ssh/authorized_keys
-    </pre>
-
-    <h3>Playbook Firewall (UFW)</h3>
-    <pre>
-Escenario: Puerto crítico expuesto
-
-1. Detección:
-   nmap -sV -p 3306,6379,27017 Localhost
-
-2. Explotación:
-   Conectar al servicio expuesto con credenciales débiles.
-
-3. Elevación:
-   Explotar service misconfigurations.
-
-4. Defensa:
-   ufw deny 3306
-    </pre>
-
 </section>
 
 <!-- CONCLUSION -->

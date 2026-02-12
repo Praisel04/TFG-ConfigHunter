@@ -28,7 +28,7 @@ def build_extended_remediation(finding):
         "hostbasedauthentication", "ignorerhosts",
         "loglevel", "logingracetime", "maxauthtries",
         "maxsessions", "permitemptypasswords", "permitrootlogin",
-        "permituserenvironment", "usepam", "maxstartups"
+        "permituserenvironment", "usepam", "maxstartups", "kexalgorithms"
     ]
 
     param_detectado = None
@@ -97,7 +97,7 @@ Validación:
 4. Recargar SSH:
    sudo systemctl restart sshd
 """
-        validacion = "sshd -T | grep banner"
+        validacion = "sudo sshd -T | grep banner"
         resultado = "Debe aparecer: banner /etc/issue.net"
         return {"impacto": impacto, "pasos": pasos, "validacion": validacion, "resultado": resultado}
 
@@ -137,7 +137,7 @@ Validación:
 4. Recargar SSH:
    sudo systemctl restart sshd
 """
-        validacion = f"sshd -T | grep {param_detectado}"
+        validacion = f"sudo sshd -T | grep {param_detectado}"
         resultado = f"Debe aparecer: {remediation.split()[0]} {remediation.split()[1]}"
         return {"impacto": impacto, "pasos": pasos, "validacion": validacion, "resultado": resultado}
 
@@ -240,7 +240,7 @@ Validación:
         # ============================================================
         #  UFW-201 — SSH expuesto (IPv4 / IPv6)
         # ============================================================
-        if finding["id"] == "UFW-201":
+        if finding["id"] == "UFW-201-HARDENING":
             pasos = f"""
 1. Restringir acceso SSH a IP específica:
    sudo ufw delete <número_regla>
@@ -253,7 +253,7 @@ Validación:
         # ============================================================
         #  UFW-301 — ALLOW sin LIMIT
         # ============================================================
-        if finding["id"] == "UFW-301":
+        if finding["id"] == "UFW-301-HARDENING":
             pasos = f"""
 1. Convertir ALLOW en LIMIT:
    sudo ufw delete <número_regla>
@@ -266,7 +266,7 @@ Validación:
         # ============================================================
         #  UFW-302 — ANY/ANY
         # ============================================================
-        if finding["id"] == "UFW-302":
+        if finding["id"] == "UFW-302-HARDENING":
             pasos = f"""
 1. Eliminar regla demasiado permisiva:
    sudo ufw delete <número_regla>
@@ -274,14 +274,14 @@ Validación:
 2. Aplicar reglas restringidas:
    sudo ufw allow from <IP_segura> to any port {puerto}
 """
-            validacion = f"sudo ufw status verbose | grep -v 'Anywhere'"
+            validacion = f"sudo ufw status verbose | grep 'Anywhere'"
             resultado = "No debe aparecer ningún origen 'Anywhere'."
             return {"impacto": impacto, "pasos": pasos, "validacion": validacion, "resultado": resultado}
 
         # ============================================================
         #  UFW-303 — Exposición total 0.0.0.0/0 o ::/0
         # ============================================================
-        if finding["id"] == "UFW-303":
+        if finding["id"] == "UFW-303-HARDENING":
             pasos = f"""
 1. Eliminar regla expuesta públicamente:
    sudo ufw delete <número_regla>
@@ -289,14 +289,14 @@ Validación:
 2. Volver a crearla de forma segura:
    sudo ufw allow from <IP_segura> to any port {puerto}
 """
-            validacion = "sudo ufw status verbose | grep -v '/0'"
+            validacion = "sudo ufw status verbose | grep '/0'"
             resultado = "No debe haber reglas con origen 0.0.0.0/0 o ::/0."
             return {"impacto": impacto, "pasos": pasos, "validacion": validacion, "resultado": resultado}
 
         # ============================================================
         #  UFW-304 — CIDR demasiado amplio
         # ============================================================
-        if finding["id"] == "UFW-304":
+        if finding["id"] == "UFW-304-HARDENING":
             pasos = f"""
 1. Identificar rango peligroso:
    {evidence}
@@ -312,7 +312,7 @@ Validación:
         # ============================================================
         #  UFW-305 — Regla sin puerto definido
         # ============================================================
-        if finding["id"] == "UFW-305":
+        if finding["id"] == "UFW-305-HARDENING":
             pasos = f"""
 1. Regla incompleta detectada:
    {evidence}
@@ -326,7 +326,7 @@ Validación:
         # ============================================================
         #  UFW-401 — Duplicadas
         # ============================================================
-        if finding["id"] == "UFW-401":
+        if finding["id"] == "UFW-401-HARDENING":
             pasos = """
 1. Eliminar reglas duplicadas:
    sudo ufw status numbered
@@ -339,7 +339,7 @@ Validación:
         # ============================================================
         #  UFW-402 — Conflicto allow/deny
         # ============================================================
-        if finding["id"] == "UFW-402":
+        if finding["id"] == "UFW-402-HARDENING":
             pasos = """
 1. Revisar conflicto en el puerto.
 
@@ -350,25 +350,11 @@ Validación:
             resultado = "El puerto no debe tener reglas contradictorias."
             return {"impacto": impacto, "pasos": pasos, "validacion": validacion, "resultado": resultado}
 
-        # ============================================================
-        #  UFW-403 — Reglas mal formadas
-        # ============================================================
-        if finding["id"] == "UFW-403":
-            pasos = """
-1. Regla mal formada detectada.
-
-2. Revisar sintaxis de:
-   ufw allow <puerto>/tcp
-   ufw deny <puerto>/udp
-"""
-            validacion = "sudo ufw status verbose"
-            resultado = "Todas las reglas deben tener acción y puerto correcto."
-            return {"impacto": impacto, "pasos": pasos, "validacion": validacion, "resultado": resultado}
 
         # ============================================================
-        #  UFW-406 — Falta de protocolo
+        #  UFW-403 — Falta de protocolo
         # ============================================================
-        if finding["id"] == "UFW-406":
+        if finding["id"] == "UFW-403-HARDENING":
             pasos = f"""
 1. Reglas sin protocolo detectadas:
    {evidence}
@@ -405,7 +391,6 @@ def generate_html_report(module_name="ALL"):
     - Resumen
     - Hallazgos
     - Remediaciones detalladas
-    - Playbooks
     - Conclusión
     """
 

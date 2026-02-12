@@ -139,7 +139,7 @@ pre {
     </div>
 
     <div class="cover-meta">
-        <p>Fecha de generación: 2026-01-30 09:09:21</p>
+        <p>Fecha de generación: 2026-02-09 12:02:49</p>
         <p>Versión del motor: 1.0</p>
         <p>Clasificación: CONFIDENCIAL</p>
     </div>
@@ -176,19 +176,19 @@ pre {
         </tr>
         <tr>
             <td class="severity-critica">Crítica</td>
-            <td>5</td>
+            <td>1</td>
         </tr>
         <tr>
             <td class="severity-alta">Alta</td>
-            <td>9</td>
+            <td>5</td>
         </tr>
         <tr>
             <td class="severity-media">Media</td>
-            <td>12</td>
+            <td>4</td>
         </tr>
         <tr>
             <td class="severity-baja">Baja</td>
-            <td>0</td>
+            <td>1</td>
         </tr>
         <tr>
             <td class="severity-info">Info</td>
@@ -196,7 +196,7 @@ pre {
         </tr>
         <tr>
             <th>Total</th>
-            <th>26</th>
+            <th>11</th>
         </tr>
     </table>
 
@@ -215,62 +215,6 @@ pre {
 <h2></h2>
 
 
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-1 — Permisos inseguros en sshd_config
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.1</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Permisos incorrectos permiten modificar configuración crítica de SSH.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Archivo dummy contiene BAD_PERMISSIONS
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-chmod 600 /etc/ssh/sshd_config
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-4 — Falta AllowUsers o AllowGroups
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.4</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Limitar usuarios reduce superficie de ataque.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-No se encontró ninguna línea AllowUsers ni AllowGroups
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-Añadir AllowUsers &lt;usuario&gt;
-      </pre>
-  </div>
-</div>
     
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
@@ -331,62 +275,6 @@ Ciphers aes256-ctr,aes192-ctr,aes128-ctr
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-7 — ClientAliveInterval demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.7</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Valores altos retrasan tiempo de detección de sesiones muertas.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 12: ClientAliveInterval 600
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ClientAliveInterval 300
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-7 — ClientAliveCountMax demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.7</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita mantener sesiones inactivas por demasiado tiempo.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 13: ClientAliveCountMax 10
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ClientAliveCountMax 3
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
           CHK-SSH-8 — AllowTcpForwarding debe estar en &#39;no&#39;
       </h3>
 
@@ -402,236 +290,12 @@ ClientAliveCountMax 3
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 14: AllowTcpForwarding yes
+Línea 126: AllowTcpForwarding yes
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
 AllowTcpForwarding no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-9 — GSSAPIAuthentication debe estar en &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.9</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Reduce superficie de ataque en autenticación.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 15: GSSAPIAuthentication yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-GSSAPIAuthentication no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-10 — HostbasedAuthentication debe estar en &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.10</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita autenticación basada en confianza entre hosts.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 2: HostbasedAuthentication yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-HostbasedAuthentication no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-11 — IgnoreRhosts debe estar en &#39;yes&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.11</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Los archivos rhosts son altamente inseguros.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 3: IgnoreRhosts no
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-IgnoreRhosts yes
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-13 — LoginGraceTime debe ser 60 o menos
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.13</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Reduce ventana para ataques de fuerza bruta.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 8: LoginGraceTime 120
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-LoginGraceTime 60
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-14 — LogLevel incorrecto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.14</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Nivel adecuado permite registrar actividad sospechosa.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 20: LogLevel debug
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-LogLevel INFO
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-16 — MaxAuthTries demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.16</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita ataques de fuerza bruta.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 7: MaxAuthTries 10
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-MaxAuthTries 4
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-17 — MaxSessions demasiado alto
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.17</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita abuso de sesiones múltiples.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 19: MaxSessions 50
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-MaxSessions 10
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-19 — PermitEmptyPasswords debe ser &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.19</p>
-      
-
-      <p><strong>Severidad:</strong> ALTA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita sesiones sin contraseña.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 6: PermitEmptyPasswords yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-PermitEmptyPasswords no
       </pre>
   </div>
 </div>
@@ -654,40 +318,12 @@ PermitEmptyPasswords no
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 5: PermitRootLogin yes
+Línea 135: PermitRootLogin yes
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
 PermitRootLogin no
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-21 — PermitUserEnvironment debe estar en &#39;no&#39;
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> 5.1.21</p>
-      
-
-      <p><strong>Severidad:</strong> MEDIA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Evita carga de configuraciones maliciosas.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 4: PermitUserEnvironment yes
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-PermitUserEnvironment no
       </pre>
   </div>
 </div>
@@ -710,7 +346,7 @@ PermitUserEnvironment no
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Línea 21: UsePAM no
+Línea 147: UsePAM no
       </pre>
 
       <p><strong>Recomendación:</strong></p>
@@ -723,27 +359,27 @@ UsePAM yes
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
-          CHK-SSH-18 — MaxStartups no definido
+          CHK-SSH-12 — KexAlgorithms inseguros detectados
       </h3>
 
       
-      <p><strong>Referencia CIS:</strong> 5.1.18</p>
+      <p><strong>Referencia CIS:</strong> 5.1.12</p>
       
 
-      <p><strong>Severidad:</strong> MEDIA</p>
+      <p><strong>Severidad:</strong> ALTA</p>
 
       <p><strong>Explicación breve:</strong><br>
-          Evita DoS mediante conexiones simultáneas.
+          Usar Algortimos Kex inseguros puedes exponer las conexiones a posibles ataques &#39;Man In The Middle&#39;
       </p>
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Parámetro no encontrado en sshd_config
+Se encontró el KexAlgorithm inseguro: diffie-hellman-group1-sha1
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-MaxStartups 10:30:60
+KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
       </pre>
   </div>
 </div>
@@ -751,6 +387,8 @@ MaxStartups 10:30:60
 
 
 </section>
+    
+
     
 
     
@@ -763,27 +401,55 @@ MaxStartups 10:30:60
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
-          UFW-101 — Firewall UFW desactivado
+          UFW-301-HARDENING — Regla ALLOW sin LIMIT
       </h3>
 
       
-      <p><strong>Referencia CIS:</strong> CIS 4.1.1, STIG UBTU-24-102010</p>
+      <p><strong>Referencia CIS:</strong> Recomendación Adicional de ConfigHunter</p>
+      
+
+      <p><strong>Severidad:</strong> MEDIA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos. Se recomienda modificar este parametro si no es estrictamente necesario
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+8080                       ALLOW IN    Anywhere
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+ufw limit 8080/tcp
+      </pre>
+  </div>
+</div>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-302-HARDENING — Regla demasiado permisiva (ANY/ANY)
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> Recomendación Adicional de ConfigHunter</p>
       
 
       <p><strong>Severidad:</strong> ALTA</p>
 
       <p><strong>Explicación breve:</strong><br>
-          Si UFW está desactivado, no se aplica ningún control de tráfico, dejando el sistema completamente expuesto.
+          Permitir tráfico desde Anywhere viola las políticas de control de acceso para mantener segura la máquina. Se recomienda modificar este parámetro si no es estrictamente necesario.
       </p>
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-Estado: inactive
+8080                       ALLOW IN    Anywhere
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ufw enable
+Restringir la regla a IPs específicas.
       </pre>
   </div>
 </div>
@@ -791,139 +457,27 @@ ufw enable
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
-          UFW-301 — Regla ALLOW sin LIMIT
+          UFW-301-HARDENING — Regla ALLOW sin LIMIT
       </h3>
 
       
-      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
-      
-
-      <p><strong>Severidad:</strong> CRITICA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-80/tcp                     ALLow       192.168.1.5
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ufw limit 80/tcp
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          UFW-301 — Regla ALLOW sin LIMIT
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
-      
-
-      <p><strong>Severidad:</strong> CRITICA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-80/tcp                     ALLow       192.168.1.5
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ufw limit 80/tcp
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          UFW-301 — Regla ALLOW sin LIMIT
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
-      
-
-      <p><strong>Severidad:</strong> CRITICA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-22                     ALLow       192.168.1.5
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ufw limit 22/tcp
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          UFW-301 — Regla ALLOW sin LIMIT
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> CIS Control 4.6, STIG UBTU-24-600200</p>
-      
-
-      <p><strong>Severidad:</strong> CRITICA</p>
-
-      <p><strong>Explicación breve:</strong><br>
-          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.
-      </p>
-
-      <p><strong>Evidencia:</strong></p>
-      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-22/tcp                     ALLow       192.168.1.5
-      </pre>
-
-      <p><strong>Recomendación:</strong></p>
-      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ufw limit 22/tcp
-      </pre>
-  </div>
-</div>
-    
-        <div class="finding-wrapper">
-  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
-      <h3 style="margin-bottom: 6px; color: #003366;">
-          UFW-401 — Reglas duplicadas detectadas
-      </h3>
-
-      
-      <p><strong>Referencia CIS:</strong> CIS 4.1.2 (consistencia)</p>
+      <p><strong>Referencia CIS:</strong> Recomendación Adicional de ConfigHunter</p>
       
 
       <p><strong>Severidad:</strong> MEDIA</p>
 
       <p><strong>Explicación breve:</strong><br>
-          Las reglas duplicadas pueden generar comportamientos inconsistentes.
+          Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos. Se recomienda modificar este parametro si no es estrictamente necesario
       </p>
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-80/tcp                     ALLow       192.168.1.5
+8080 (v6)                  ALLOW IN    Anywhere (v6)
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-ufw delete &lt;número&gt;
+ufw limit 8080/tcp
       </pre>
   </div>
 </div>
@@ -931,14 +485,42 @@ ufw delete &lt;número&gt;
         <div class="finding-wrapper">
   <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
       <h3 style="margin-bottom: 6px; color: #003366;">
-          UFW-406 — Reglas sin especificar protocolo (tcp/udp)
+          UFW-302-HARDENING — Regla demasiado permisiva (ANY/ANY)
       </h3>
 
       
-      <p><strong>Referencia CIS:</strong> CIS Control 4.8</p>
+      <p><strong>Referencia CIS:</strong> Recomendación Adicional de ConfigHunter</p>
       
 
-      <p><strong>Severidad:</strong> MEDIA</p>
+      <p><strong>Severidad:</strong> ALTA</p>
+
+      <p><strong>Explicación breve:</strong><br>
+          Permitir tráfico desde Anywhere viola las políticas de control de acceso para mantener segura la máquina. Se recomienda modificar este parámetro si no es estrictamente necesario.
+      </p>
+
+      <p><strong>Evidencia:</strong></p>
+      <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
+8080 (v6)                  ALLOW IN    Anywhere (v6)
+      </pre>
+
+      <p><strong>Recomendación:</strong></p>
+      <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
+Restringir la regla a IPs específicas.
+      </pre>
+  </div>
+</div>
+    
+        <div class="finding-wrapper">
+  <div class="finding-block" style="margin-bottom: 14px; padding: 12px;">
+      <h3 style="margin-bottom: 6px; color: #003366;">
+          UFW-403-HARDENING — Reglas sin especificar protocolo (tcp/udp)
+      </h3>
+
+      
+      <p><strong>Referencia CIS:</strong> Recomendación Adicional de ConfigHunter</p>
+      
+
+      <p><strong>Severidad:</strong> BAJA</p>
 
       <p><strong>Explicación breve:</strong><br>
           No definir el protocolo impide aplicar políticas precisas.
@@ -946,12 +528,12 @@ ufw delete &lt;número&gt;
 
       <p><strong>Evidencia:</strong></p>
       <pre style="background:#d8d8d8; padding:6px; font-size: 15px">
-22                     ALLow       192.168.1.5
+8080                       ALLOW IN    Anywhere; 8080 (v6)                  ALLOW IN    Anywhere (v6)
       </pre>
 
       <p><strong>Recomendación:</strong></p>
       <pre style="background:#e2e0e0; padding:10px; border-radius:5px; white-space:pre-wrap; font-size: 15px;">
-Ejemplo: ufw allow 80/tcp
+ufw allow | limit &lt;port&gt; / tcp|udp
       </pre>
   </div>
 </div>
@@ -959,8 +541,6 @@ Ejemplo: ufw allow 80/tcp
 
 
 </section>
-    
-
     
 
 
@@ -975,76 +555,6 @@ Ejemplo: ufw allow 80/tcp
     </p>
 
     
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-1 — Permisos inseguros en sshd_config</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Permisos incorrectos permiten modificar configuración crítica de SSH.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Revisar permisos actuales:
-   sudo ls -l /etc/ssh/
-
-2. Aplicar permisos seguros típicos:
-   sudo chmod 600 /etc/ssh/ssh_host_*
-   sudo chown root:root /etc/ssh/ssh_host_*
-
-3. Seguir las recomendaciones exactas:
-   chmod 600 /etc/ssh/sshd_config
-
-4. Recargar SSH (si aplica):
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>
-Validación:
-   sudo stat -c &#34;%a %U %G&#34; /etc/ssh/ssh_host_*
- --> Los archivos deben ser propiedad de root:root y con permisos 600.</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-4 — Falta AllowUsers o AllowGroups</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Limitar usuarios reduce superficie de ataque.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   no se encontró ninguna línea allowusers ni allowgroups
-
-3. Aplicar la recomendación:
-   Añadir AllowUsers &lt;usuario&gt;
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep allowusers --> Debe aparecer: Añadir AllowUsers</pre>
-
-                
-
-            </div>
-
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
@@ -1067,12 +577,12 @@ Validación:
    Banner /etc/issue.net
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep banner --> Debe aparecer: banner /etc/issue.net</pre>
+                <pre>sudo sshd -T | grep banner --> Debe aparecer: banner /etc/issue.net</pre>
 
                 
 
@@ -1100,78 +610,12 @@ Validación:
    Ciphers aes256-ctr,aes192-ctr,aes128-ctr
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep ciphers --> Debe aparecer: Ciphers aes256-ctr,aes192-ctr,aes128-ctr</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-7 — ClientAliveInterval demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Valores altos retrasan tiempo de detección de sesiones muertas.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 12: clientaliveinterval 600
-
-3. Cambiar por:
-   ClientAliveInterval 300
-
-4. Recargar:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep clientalive --> Debe verse: ClientAliveInterval 300</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-7 — ClientAliveCountMax demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita mantener sesiones inactivas por demasiado tiempo.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 13: clientalivecountmax 10
-
-3. Cambiar por:
-   ClientAliveCountMax 3
-
-4. Recargar:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep clientalive --> Debe verse: ClientAliveCountMax 3</pre>
+                <pre>sudo sshd -T | grep ciphers --> Debe aparecer: Ciphers aes256-ctr,aes192-ctr,aes128-ctr</pre>
 
                 
 
@@ -1193,282 +637,18 @@ Validación:
    sudo nano /etc/ssh/sshd_config
 
 2. Localizar:
-   línea 14: allowtcpforwarding yes
+   línea 126: allowtcpforwarding yes
 
 3. Aplicar la recomendación:
    AllowTcpForwarding no
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep allowtcpforwarding --> Debe aparecer: AllowTcpForwarding no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-9 — GSSAPIAuthentication debe estar en &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Reduce superficie de ataque en autenticación.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 15: gssapiauthentication yes
-
-3. Aplicar la recomendación:
-   GSSAPIAuthentication no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep gssapiauthentication --> Debe aparecer: GSSAPIAuthentication no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-10 — HostbasedAuthentication debe estar en &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita autenticación basada en confianza entre hosts.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 2: hostbasedauthentication yes
-
-3. Aplicar la recomendación:
-   HostbasedAuthentication no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep hostbasedauthentication --> Debe aparecer: HostbasedAuthentication no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-11 — IgnoreRhosts debe estar en &#39;yes&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Los archivos rhosts son altamente inseguros.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 3: ignorerhosts no
-
-3. Aplicar la recomendación:
-   IgnoreRhosts yes
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep ignorerhosts --> Debe aparecer: IgnoreRhosts yes</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-13 — LoginGraceTime debe ser 60 o menos</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Reduce ventana para ataques de fuerza bruta.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 8: logingracetime 120
-
-3. Aplicar la recomendación:
-   LoginGraceTime 60
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep logingracetime --> Debe aparecer: LoginGraceTime 60</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-14 — LogLevel incorrecto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Nivel adecuado permite registrar actividad sospechosa.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 20: loglevel debug
-
-3. Aplicar la recomendación:
-   LogLevel INFO
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep loglevel --> Debe aparecer: LogLevel INFO</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-16 — MaxAuthTries demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita ataques de fuerza bruta.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 7: maxauthtries 10
-
-3. Aplicar la recomendación:
-   MaxAuthTries 4
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep maxauthtries --> Debe aparecer: MaxAuthTries 4</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-17 — MaxSessions demasiado alto</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita abuso de sesiones múltiples.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 19: maxsessions 50
-
-3. Aplicar la recomendación:
-   MaxSessions 10
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep maxsessions --> Debe aparecer: MaxSessions 10</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-19 — PermitEmptyPasswords debe ser &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita sesiones sin contraseña.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 6: permitemptypasswords yes
-
-3. Aplicar la recomendación:
-   PermitEmptyPasswords no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep permitemptypasswords --> Debe aparecer: PermitEmptyPasswords no</pre>
+                <pre>sudo sshd -T | grep allowtcpforwarding --> Debe aparecer: AllowTcpForwarding no</pre>
 
                 
 
@@ -1490,51 +670,18 @@ Validación:
    sudo nano /etc/ssh/sshd_config
 
 2. Localizar:
-   línea 5: permitrootlogin yes
+   línea 135: permitrootlogin yes
 
 3. Aplicar la recomendación:
    PermitRootLogin no
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep permitrootlogin --> Debe aparecer: PermitRootLogin no</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-21 — PermitUserEnvironment debe estar en &#39;no&#39;</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Evita carga de configuraciones maliciosas.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Editar archivo SSH:
-   sudo nano /etc/ssh/sshd_config
-
-2. Localizar:
-   línea 4: permituserenvironment yes
-
-3. Aplicar la recomendación:
-   PermitUserEnvironment no
-
-4. Recargar SSH:
-   sudo systemctl reload sshd
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep permituserenvironment --> Debe aparecer: PermitUserEnvironment no</pre>
+                <pre>sudo sshd -T | grep permitrootlogin --> Debe aparecer: PermitRootLogin no</pre>
 
                 
 
@@ -1556,18 +703,18 @@ Validación:
    sudo nano /etc/ssh/sshd_config
 
 2. Localizar:
-   línea 21: usepam no
+   línea 147: usepam no
 
 3. Aplicar la recomendación:
    UsePAM yes
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep usepam --> Debe aparecer: UsePAM yes</pre>
+                <pre>sudo sshd -T | grep usepam --> Debe aparecer: UsePAM yes</pre>
 
                 
 
@@ -1576,11 +723,11 @@ Validación:
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>CHK-SSH-18 — MaxStartups no definido</h3>
+                <h3>CHK-SSH-12 — KexAlgorithms inseguros detectados</h3>
 
                 <!-- IMPACTO -->
                 <p><strong>Impacto técnico:</strong></p>
-                <p>Evita DoS mediante conexiones simultáneas.</p>
+                <p>Usar Algortimos Kex inseguros puedes exponer las conexiones a posibles ataques &#39;Man In The Middle&#39;</p>
 
                 <!-- PASOS DE REMEDIACIÓN -->
                 <p><strong>Pasos de remediación:</strong></p>
@@ -1589,18 +736,18 @@ Validación:
    sudo nano /etc/ssh/sshd_config
 
 2. Localizar:
-   parámetro no encontrado en sshd_config
+   se encontró el kexalgorithm inseguro: diffie-hellman-group1-sha1
 
 3. Aplicar la recomendación:
-   MaxStartups 10:30:60
+   KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
 
 4. Recargar SSH:
-   sudo systemctl reload sshd
+   sudo systemctl restart sshd
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sshd -T | grep maxstartups --> Debe aparecer: MaxStartups 10:30:60</pre>
+                <pre>sudo sshd -T | grep kexalgorithms --> Debe aparecer: KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256</pre>
 
                 
 
@@ -1609,56 +756,27 @@ Validación:
         
     
         
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>UFW-101 — Firewall UFW desactivado</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Si UFW está desactivado, no se aplica ningún control de tráfico, dejando el sistema completamente expuesto.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Activar el firewall UFW:
-   sudo ufw enable
-
-2. Configurar políticas seguras:
-   sudo ufw default deny incoming
-   sudo ufw default allow outgoing
-
-3. Habilitar logging seguro:
-   sudo ufw logging on
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sudo ufw status verbose --> Debe mostrarse: Status: active</pre>
-
-                
-
-            </div>
-
+    
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
+                <h3>UFW-301-HARDENING — Regla ALLOW sin LIMIT</h3>
 
                 <!-- IMPACTO -->
                 <p><strong>Impacto técnico:</strong></p>
-                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
+                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos. Se recomienda modificar este parametro si no es estrictamente necesario</p>
 
                 <!-- PASOS DE REMEDIACIÓN -->
                 <p><strong>Pasos de remediación:</strong></p>
                 <pre>
 1. Convertir ALLOW en LIMIT:
    sudo ufw delete &lt;número_regla&gt;
-   sudo ufw limit 80/tcp
+   sudo ufw limit 8080/tcp
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sudo ufw status verbose | grep -E &#34;^80(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 80.</pre>
+                <pre>sudo ufw status verbose | grep -E &#34;^8080(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 8080.</pre>
 
                 
 
@@ -1667,23 +785,50 @@ Validación:
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
+                <h3>UFW-302-HARDENING — Regla demasiado permisiva (ANY/ANY)</h3>
 
                 <!-- IMPACTO -->
                 <p><strong>Impacto técnico:</strong></p>
-                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
+                <p>Permitir tráfico desde Anywhere viola las políticas de control de acceso para mantener segura la máquina. Se recomienda modificar este parámetro si no es estrictamente necesario.</p>
+
+                <!-- PASOS DE REMEDIACIÓN -->
+                <p><strong>Pasos de remediación:</strong></p>
+                <pre>
+1. Eliminar regla demasiado permisiva:
+   sudo ufw delete &lt;número_regla&gt;
+
+2. Aplicar reglas restringidas:
+   sudo ufw allow from &lt;IP_segura&gt; to any port 8080
+</pre>
+
+                <!-- VALIDACIÓN -->
+                <p><strong>Validación posterior:</strong></p>
+                <pre>sudo ufw status verbose | grep &#39;Anywhere&#39; --> No debe aparecer ningún origen &#39;Anywhere&#39;.</pre>
+
+                
+
+            </div>
+
+        
+
+            <div style="page-break-inside: avoid; margin-bottom: 35px;">
+                <h3>UFW-301-HARDENING — Regla ALLOW sin LIMIT</h3>
+
+                <!-- IMPACTO -->
+                <p><strong>Impacto técnico:</strong></p>
+                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos. Se recomienda modificar este parametro si no es estrictamente necesario</p>
 
                 <!-- PASOS DE REMEDIACIÓN -->
                 <p><strong>Pasos de remediación:</strong></p>
                 <pre>
 1. Convertir ALLOW en LIMIT:
    sudo ufw delete &lt;número_regla&gt;
-   sudo ufw limit 80/tcp
+   sudo ufw limit 8080/tcp
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sudo ufw status verbose | grep -E &#34;^80(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 80.</pre>
+                <pre>sudo ufw status verbose | grep -E &#34;^8080(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 8080.</pre>
 
                 
 
@@ -1692,23 +837,25 @@ Validación:
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
+                <h3>UFW-302-HARDENING — Regla demasiado permisiva (ANY/ANY)</h3>
 
                 <!-- IMPACTO -->
                 <p><strong>Impacto técnico:</strong></p>
-                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
+                <p>Permitir tráfico desde Anywhere viola las políticas de control de acceso para mantener segura la máquina. Se recomienda modificar este parámetro si no es estrictamente necesario.</p>
 
                 <!-- PASOS DE REMEDIACIÓN -->
                 <p><strong>Pasos de remediación:</strong></p>
                 <pre>
-1. Convertir ALLOW en LIMIT:
+1. Eliminar regla demasiado permisiva:
    sudo ufw delete &lt;número_regla&gt;
-   sudo ufw limit 22/tcp
+
+2. Aplicar reglas restringidas:
+   sudo ufw allow from &lt;IP_segura&gt; to any port 8080
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sudo ufw status verbose | grep -E &#34;^22(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 22.</pre>
+                <pre>sudo ufw status verbose | grep &#39;Anywhere&#39; --> No debe aparecer ningún origen &#39;Anywhere&#39;.</pre>
 
                 
 
@@ -1717,57 +864,7 @@ Validación:
         
 
             <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>UFW-301 — Regla ALLOW sin LIMIT</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Las reglas ALLOW facilitan ataques de fuerza bruta mientras que LIMIT protege contra DoS y accesos repetidos.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Convertir ALLOW en LIMIT:
-   sudo ufw delete &lt;número_regla&gt;
-   sudo ufw limit 22/tcp
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sudo ufw status verbose | grep -E &#34;^22(/tcp|/udp)?\s&#34; --> La regla debe aparecer como LIMIT para el puerto 22.</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>UFW-401 — Reglas duplicadas detectadas</h3>
-
-                <!-- IMPACTO -->
-                <p><strong>Impacto técnico:</strong></p>
-                <p>Las reglas duplicadas pueden generar comportamientos inconsistentes.</p>
-
-                <!-- PASOS DE REMEDIACIÓN -->
-                <p><strong>Pasos de remediación:</strong></p>
-                <pre>
-1. Eliminar reglas duplicadas:
-   sudo ufw status numbered
-   sudo ufw delete &lt;num&gt;
-</pre>
-
-                <!-- VALIDACIÓN -->
-                <p><strong>Validación posterior:</strong></p>
-                <pre>sudo ufw status numbered --> No deben existir reglas duplicadas.</pre>
-
-                
-
-            </div>
-
-        
-
-            <div style="page-break-inside: avoid; margin-bottom: 35px;">
-                <h3>UFW-406 — Reglas sin especificar protocolo (tcp/udp)</h3>
+                <h3>UFW-403-HARDENING — Reglas sin especificar protocolo (tcp/udp)</h3>
 
                 <!-- IMPACTO -->
                 <p><strong>Impacto técnico:</strong></p>
@@ -1777,15 +874,15 @@ Validación:
                 <p><strong>Pasos de remediación:</strong></p>
                 <pre>
 1. Reglas sin protocolo detectadas:
-   22                     allow       192.168.1.5
+   8080                       allow in    anywhere; 8080 (v6)                  allow in    anywhere (v6)
 
 2. Recrear especificando tcp/udp:
-   sudo ufw allow 22/tcp
+   sudo ufw allow 8080/tcp
 </pre>
 
                 <!-- VALIDACIÓN -->
                 <p><strong>Validación posterior:</strong></p>
-                <pre>sudo ufw status verbose | grep -E &#34;^22(/tcp|/udp)?\s&#34; --> Las reglas deben mostrar el protocolo explícitamente.</pre>
+                <pre>sudo ufw status verbose | grep -E &#34;^8080(/tcp|/udp)?\s&#34; --> Las reglas deben mostrar el protocolo explícitamente.</pre>
 
                 
 
@@ -1793,55 +890,6 @@ Validación:
 
         
     
-        
-    
-</section>
-
-<!-- PLAYBOOKS -->
-<section>
-    <h2>Playbooks de Seguridad</h2>
-    <div class="section-divider"></div>
-
-    <p>
-        Esta sección presenta escenarios de explotación y defensa basados en los hallazgos detectados.
-        Los playbooks están construidos usando tácticas MITRE ATT&CK, Kill Chain y técnicas de Red Team.
-    </p>
-
-    <h3>Playbook SSH</h3>
-    <pre>
-Táctica: Initial Access
-Técnica: T1110 — Password Brute Force
-
-1. Descubrimiento de servicio:
-   nmap -p 22 Localhost
-
-2. Ataque de fuerza bruta:
-   hydra -l root -P rockyou.txt ssh://Localhost
-
-3. Pivoting si AllowTcpForwarding = yes:
-   ssh -L 3306:localhost:3306 user@Localhost
-
-4. Persistencia:
-   echo "clave_maliciosa" >> ~/.ssh/authorized_keys
-    </pre>
-
-    <h3>Playbook Firewall (UFW)</h3>
-    <pre>
-Escenario: Puerto crítico expuesto
-
-1. Detección:
-   nmap -sV -p 3306,6379,27017 Localhost
-
-2. Explotación:
-   Conectar al servicio expuesto con credenciales débiles.
-
-3. Elevación:
-   Explotar service misconfigurations.
-
-4. Defensa:
-   ufw deny 3306
-    </pre>
-
 </section>
 
 <!-- CONCLUSION -->

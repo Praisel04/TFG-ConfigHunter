@@ -49,13 +49,21 @@ Se ha modificado la plantilla especifica de ssh para la explicacion del reinicio
 Se han comprobado todos los puntos contemplados en la guia CIS.
 Añadidos los punto 5.12 y 5.15 de CIS en ssh_check.
 
+**08-02-2026**
+Eliminado el punto UFW-103 Y UFW-104, ya que son de nivel 2.
+Comprobadas el primer bloque de reglas UFW.
+
+**09-02-2026**
+Se han modificado diferentes puntos y se han dejado referenciados como recomendaciones de la herramienta ya que no aparecen en el CIS.
+Comprobado el modo scan-all de la herramienta y corregidos algunos comandos sudo sshd grep.
+
+
+
+
 **COSAS POR HACER**
 
 **PRIORIDAD ALTA**
 COMPROBAR PERMISOS DE LA HERRAMIENTA, COMPROBAR LA CREACION DE LA CARPETA REPORTS COMO SUDO.
-1. Revisar la configuracion de ufw_check. 
-2. Revisar las reglas UFW respecto al documento de CIS.
-
 
 **PRIORIDAD MEDIA**
 1. Definir los playbooks
