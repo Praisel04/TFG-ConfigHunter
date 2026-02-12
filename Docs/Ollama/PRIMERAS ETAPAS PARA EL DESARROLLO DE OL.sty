@@ -1,0 +1,39 @@
+PRIMERAS ETAPAS PARA EL DESARROLLO DE OLLAMA EN CONFIG HUNTER
+
+1. ELEGIR FORMATO DE ALAMACENAMIENTO
+    a. Local el Windows utilizando GPU
+    b. Docker utilizando CPU
+    c. NvidiaContainer utilizando GPU
+
+2. ELEGIR EL MODELO LLM A UTILIZAR
+    a. Modelo locales de Ollama (Mistral, llama o Gema)
+    b. Modelos externos importados (Gemini o ChatGPT)
+
+3. CONFIGURACIÓN DEL MODELO
+    a. Elegir tamaño del Modelo
+    b. Elegir personalidad del modelo.
+
+4. DEFINIR PRUEBAS DE CONTEXTO Y VIABILIDAD
+    Se deben definir distintas pruebas que permitan analizar el comportamiento del modelo y la viabilidad de los resultados obtenidos.
+    De esta manera se contrastarán los resultados obtenidos con los resultados esperados.
+    
+4. COMENZAR PRUEBAS DE CONTEXTO
+    Someter al modelo a las distintas pruebas de contexto.
+    Durante esta fase se irán modificando los datos dentro del fichero Modelfile para obtener mejores respuestas
+
+5. ANALISIS DE DATOS.
+    Se deberán definir pequeños objetivos que deben alcanzar los datos reflejados por el modelo.
+
+6. OBTENCIÓN DE INFORME.
+    Una vez que los datos obtenidos sean aceptables y correctos, se deberá empezar a generar el reporte con ellos.
+    Extracción de los datos en JSON e implementación sobre la generacion del reporte.
+
+7. IMPLEMENTACIÓN VIA API
+    Una vez que se verifique el comportamiento esperado del modelo se configurará una solución via API con ollama.
+    De esta manera ConfigHunter podrá conectarse al modelo mediante la API y actuar de forma automática.
+
+
+FLUJO COMPLETO
+
+ConfigHunter --> Ejecuta Escaneo --> Genera Informe Vulnerabilidades --> ¿Genera Informe Analisis Forense? -->
+--> Llamada a la API con JSON contenedor de datos --> Modelo actua y devuelve JSON con datos AF --> ConfigHunter genera informe.
