@@ -22,18 +22,24 @@ REPORTS_DIR.mkdir(exist_ok=True)
 # HALLAZGOS RELEVANTES PARA PLAYBOOK
 # ============================================================================
 # Nota: Esto debe coincidir con los IDs normalizados en playbook_engine.py
+
 PLAYBOOK_TARGETS = {
+    "Access_sshd_config",
+    "SSH_PrivateHostKey_Permissions",
+    "DisableForwarding",
+    "GSSAPIAuthentication",
+    "KexAlgorithms",
+    "MACs",
+    "WeakCiphers",
+    "LoginGraceTime",
+    "LogLevel",
+    "UsePAM",
     "PermitRootLogin",
     "PermitEmptyPasswords",
-    "WeakCiphers",
-    "AllowTcpForwarding",
     "MaxAuthTries",
     "MaxSessions",
-    "HostbasedAuthentication",
-    "IgnoreRhosts",
-    "PermitUserEnvironment",
     "MaxStartups",
-    "ClientAliveConfig",
+    "ClientAliveConfig"
 }
 
 
@@ -45,52 +51,83 @@ def normalize_title(title: str):
     Ajusta los títulos reales del reporte a los IDs internos del Playbook.
     """
 
-    # Weak Ciphers
+    # Weak Ciphers (5.1.6)
     if "Ciphers inseguros" in title:
         return "WeakCiphers"
 
-    # ClientAliveInterval / ClientAliveCountMax
+    # KexAlgorithms (5.1.12)
+    if "KexAlgorithms inseguros" in title:
+        return "KexAlgorithms"
+
+    # MACs (5.1.15)
+    if "MACs inseguras" in title or "Mac insegura" in title:
+        return "MACs"
+
+    # ClientAliveInterval / ClientAliveCountMax (5.1.7)
     if "ClientAlive" in title:
         return "ClientAliveConfig"
 
-    # HostbasedAuthentication (cuando dice "debe estar en no")
+    # HostbasedAuthentication (5.1.10)
     if "HostbasedAuthentication" in title:
         return "HostbasedAuthentication"
 
-    # IgnoreRhosts
+    # IgnoreRhosts (5.1.11)
     if "IgnoreRhosts" in title:
         return "IgnoreRhosts"
 
-    # PermitUserEnvironment
+    # PermitUserEnvironment (5.1.21)
     if "PermitUserEnvironment" in title:
         return "PermitUserEnvironment"
 
-    # AllowTcpForwarding
+    # AllowTcpForwarding (5.1.8)
     if "AllowTcpForwarding" in title:
         return "AllowTcpForwarding"
 
-    # PermitRootLogin
+    # PermitRootLogin (5.1.20)
     if "PermitRootLogin" in title:
         return "PermitRootLogin"
 
-    # PermitEmptyPasswords
+    # PermitEmptyPasswords (5.1.19)
     if "PermitEmptyPasswords" in title:
         return "PermitEmptyPasswords"
 
-    # MaxAuthTries
+    # MaxAuthTries (5.1.16)
     if "MaxAuthTries" in title:
         return "MaxAuthTries"
 
-    # MaxSessions
+    # MaxSessions (5.1.17)
     if "MaxSessions" in title:
         return "MaxSessions"
 
-    # MaxStartups
+    # MaxStartups (5.1.18)
     if "MaxStartups" in title:
         return "MaxStartups"
 
-    return None
+    # UsePAM (5.1.22)
+    if "UsePAM" in title:
+        return "UsePAM"
 
+    # LoginGraceTime (5.1.13)
+    if "LoginGraceTime" in title:
+        return "LoginGraceTime"
+
+    # LogLevel (5.1.14)
+    if "LogLevel" in title:
+        return "LogLevel"
+
+    # GSSAPIAuthentication (5.1.9)
+    if "GSSAPIAuthentication" in title:
+        return "GSSAPIAuthentication"
+
+    # AllowUsers / AllowGroups (5.1.4)
+    if "AllowUsers" in title or "AllowGroups" in title:
+        return "AllowUsersGroups"
+
+    # Banner (5.1.5)
+    if "Banner" in title:
+        return "Banner"
+
+    return None
 
 # ============================================================================
 # GENERAR PLAYBOOK

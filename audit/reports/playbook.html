@@ -107,7 +107,7 @@ pre {
 
     <div class="cover-meta">
         Generado automáticamente por GoAudit<br>
-        Fecha: 09/02/2026
+        Fecha: 08/03/2026
     </div>
 </div>
 
@@ -118,9 +118,11 @@ pre {
     
         <div class="toc-item">✔ 1 — WeakCiphers</div>
     
-        <div class="toc-item">✔ 2 — AllowTcpForwarding</div>
+        <div class="toc-item">✔ 2 — PermitRootLogin</div>
     
-        <div class="toc-item">✔ 3 — PermitRootLogin</div>
+        <div class="toc-item">✔ 3 — UsePAM</div>
+    
+        <div class="toc-item">✔ 4 — KexAlgorithms</div>
     
 </div>
 
@@ -145,18 +147,18 @@ pre {
 
     <h3>MITRE ATT&CK</h3>
     <table>
-        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        <tr><th>ID</th><th>Técnica</th><th>Táctica</th></tr>
         
         <tr>
             <td>T1557</td>
-            <td>Man-in-the-Middle</td>
-            <td>Cifrados débiles permiten interceptar tráfico SSH.</td>
+            <td>Adversary-in-the-Middle</td>
+            <td>Credential Access, Collection</td>
         </tr>
         
         <tr>
             <td>T1040</td>
             <td>Network Sniffing</td>
-            <td>Facilita descifrado de sesiones SSH.</td>
+            <td>Credential Access, Discovery</td>
         </tr>
         
     </table>
@@ -221,98 +223,6 @@ pre {
 <div style="page-break-after: always;"></div>
 
     <div class="block">
-    <h2>AllowTcpForwarding</h2>
-
-    <h3>Descripción ampliada</h3>
-    <p>Permitir túneles SSH facilita el pivoting interno, el acceso a servicios que deberían ser privados y la exfiltración de datos sin ser detectado por firewalls.</p>
-
-    <h3>Importancia defensiva</h3>
-    <p>Evita tunelización no autorizada.</p>
-
-    <h3>Evidencia</h3>
-    <pre>Línea 126: AllowTcpForwarding yes</pre>
-
-    <h3>Explotación del hallazgo</h3>
-    <p>El atacante crea túneles SSH para pivotar dentro de la red, exfiltrar datos o acceder a sistemas internos.</p>
-
-    <h3>MITRE ATT&CK</h3>
-    <table>
-        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
-        
-        <tr>
-            <td>T1572</td>
-            <td>Protocol Tunneling</td>
-            <td>Permite túneles para pivoting interno.</td>
-        </tr>
-        
-        <tr>
-            <td>T1090</td>
-            <td>Proxying</td>
-            <td>El atacante puede enrutar tráfico a otros sistemas internos.</td>
-        </tr>
-        
-    </table>
-
-    <h3>Cyber Kill Chain</h3>
-    <table>
-        <tr><th>Fase</th></tr>
-        
-        <tr><td>Exploitation</td></tr>
-        
-        <tr><td>Installation</td></tr>
-        
-        <tr><td>Command & Control</td></tr>
-        
-    </table>
-
-    <h3>Indicadores DFIR</h3>
-    <table>
-        <tr><th>Tipo</th><th>Detalles</th></tr>
-
-        <tr>
-            <td><b>Logs relacionados</b></td>
-            <td>
-                
-                    • /var/log/auth.log<br>
-                
-            </td>
-        </tr>
-
-        <tr>
-            <td><b>Artefactos clave</b></td>
-            <td>
-                
-                    • Forwarded connections detectadas.<br>
-                
-                    • Acceso inesperado a puertos internos desde SSH.<br>
-                
-            </td>
-        </tr>
-    </table>
-
-    <h3>Checklist Forense</h3>
-    <ul>
-        
-            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
-        
-            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
-        
-            <li>¿Existen modificaciones recientes en authorized_keys?</li>
-        
-            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
-        
-            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
-        
-            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
-        
-            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
-        
-    </ul>
-</div>
-
-<div style="page-break-after: always;"></div>
-
-    <div class="block">
     <h2>PermitRootLogin</h2>
 
     <h3>Descripción ampliada</h3>
@@ -329,24 +239,24 @@ pre {
 
     <h3>MITRE ATT&CK</h3>
     <table>
-        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        <tr><th>ID</th><th>Técnica</th><th>Táctica</th></tr>
         
         <tr>
             <td>T1078</td>
             <td>Valid Accounts</td>
-            <td>Acceso directo como root sin necesidad de elevación.</td>
+            <td>Initial Access, Persistence, Privilege Escalation, Defense Evasion</td>
         </tr>
         
         <tr>
             <td>T1110</td>
             <td>Brute Force</td>
-            <td>Vulnerable a intentos automatizados sobre root.</td>
+            <td>Credential Access</td>
         </tr>
         
         <tr>
-            <td>T1021</td>
-            <td>Remote Services</td>
-            <td>SSH permite acceso total al sistema como root.</td>
+            <td>T1021.004</td>
+            <td>Remote Services: SSH</td>
+            <td>Lateral Movement</td>
         </tr>
         
     </table>
@@ -389,6 +299,166 @@ pre {
                     • Modificación de /root/.ssh/authorized_keys.<br>
                 
                     • Cambios sospechosos en archivos de configuración.<br>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>UsePAM</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>Deshabilitar PAM reduce significativamente los controles de autenticación disponibles, incluyendo políticas de bloqueo, expiración de contraseña, autenticación multifactor y controles adicionales de seguridad. Esto debilita el proceso de autenticación y facilita ataques de fuerza bruta o abuso de cuentas comprometidas.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>PAM añade controles avanzados de autenticación.</p>
+
+    <h3>Evidencia</h3>
+    <pre>Línea 147: UsePAM no</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p></p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Táctica</th></tr>
+        
+        <tr>
+            <td>T1556</td>
+            <td>Modify Authentication Process</td>
+            <td>Credential Access, Persistence</td>
+        </tr>
+        
+        <tr>
+            <td>T1110</td>
+            <td>Brute Force</td>
+            <td>Credential Access</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
+
+    <h3>Checklist Forense</h3>
+    <ul>
+        
+            <li>¿Hay accesos SSH exitosos desde IPs externas o desconocidas?</li>
+        
+            <li>¿Se detectan múltiples intentos fallidos consecutivos?</li>
+        
+            <li>¿Existen modificaciones recientes en authorized_keys?</li>
+        
+            <li>¿Se han creado nuevos usuarios o claves SSH?</li>
+        
+            <li>¿Hay procesos sospechosos ejecutándose bajo root?</li>
+        
+            <li>¿Se han observado sesiones SSH activas fuera de horario?</li>
+        
+            <li>¿Aparecen túneles SSH o conexiones reenviadas inesperadas?</li>
+        
+    </ul>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+    <div class="block">
+    <h2>KexAlgorithms</h2>
+
+    <h3>Descripción ampliada</h3>
+    <p>El uso de algoritmos de intercambio de claves débiles como versiones basadas en SHA-1 puede permitir ataques de degradación criptográfica o facilitar ataques Man-in-the-Middle. Un algoritmo KEX inseguro compromete la confidencialidad inicial del túnel SSH, poniendo en riesgo credenciales y datos transmitidos.</p>
+
+    <h3>Importancia defensiva</h3>
+    <p>Usar Algortimos Kex inseguros puedes exponer las conexiones a posibles ataques 'Man In The Middle'</p>
+
+    <h3>Evidencia</h3>
+    <pre>Se encontró el KexAlgorithm inseguro: diffie-hellman-group1-sha1</pre>
+
+    <h3>Explotación del hallazgo</h3>
+    <p></p>
+
+    <h3>MITRE ATT&CK</h3>
+    <table>
+        <tr><th>ID</th><th>Técnica</th><th>Táctica</th></tr>
+        
+        <tr>
+            <td>T1557</td>
+            <td>Adversary-in-the-Middle</td>
+            <td>Credential Access, Collection</td>
+        </tr>
+        
+        <tr>
+            <td>T1040</td>
+            <td>Network Sniffing</td>
+            <td>Credential Access, Discovery</td>
+        </tr>
+        
+    </table>
+
+    <h3>Cyber Kill Chain</h3>
+    <table>
+        <tr><th>Fase</th></tr>
+        
+    </table>
+
+    <h3>Indicadores DFIR</h3>
+    <table>
+        <tr><th>Tipo</th><th>Detalles</th></tr>
+
+        <tr>
+            <td><b>Logs relacionados</b></td>
+            <td>
+                
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Artefactos clave</b></td>
+            <td>
                 
             </td>
         </tr>

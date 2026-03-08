@@ -1,3 +1,5 @@
+# TFG-GoAudit
+
 
 
 
@@ -38,21 +40,36 @@ Añadidos los punto 5.12 y 5.15 de CIS en ssh_check.
 **12-02-2026**
 Se ha comenzado la definición para la implementación de Ollama en la generación de informes de análisis forense
 
+**08-03-2026**
+
+Se ha obtenido la primera version funcional completa de la herramienta.
+ACTUALMENTE:
+    - Herramienta realiza escaneo de los modulos ssh y ufw de maquinas ubuntu.
+    - Se generan informes de reporte sobre los hallazgos encontrados y toda la informacion relativa a ellos.
+    - Se genera el playbook de analisis forense completo, enriquecido con las técnicas de MITRE
+    Ante cualquier duda sobre la costruccion del playbook revisar el archivo flujos_de_trabajo.md
+Aun se deben validar de forma completa los indicadores FDIR y la checklist generica
+
+
 **COSAS POR HACER**
 
 **PRIORIDAD ALTA**
-COMPROBAR PERMISOS DE LA HERRAMIENTA, COMPROBAR LA CREACION DE LA CARPETA REPORTS COMO SUDO.
-Comenzar el flujo de Ollama con modelo IA para la generación de Informe de Análisis Forense incluyendo MITTRE ATT&CK Y CYBER KILL CHAIN
-
+Comprobar indicadores FDIR del playbook de analisis forense
+Terminar configuraciones de CLI y mejorar la apariencia
+Comenzar documentacion de TFG.
 
 **PRIORIDAD MEDIA**
+COMPROBAR PERMISOS DE LA HERRAMIENTA, COMPROBAR LA CREACION DE LA CARPETA REPORTS COMO SUDO.
+
 
 
 **PRIORIDAD BAJA**
-1. Revisar la generación del PDF. Corregir donde sale la parte de remediaciones avanzadas. Eliminar el apartado de playbook del PDF
+
+Comenzar el flujo de Ollama con modelo IA para la generación de Informe de Análisis Forense incluyendo MITTRE ATT&CK Y CYBER KILL CHAIN (APLAZADO)
 
 **OBJETIVOS DE FUTURO**
 CREAR PLAYBOOK REPRODUCIBLE DE REMEDIACIÓN CON UN SCRIPT.
+
 
 
 

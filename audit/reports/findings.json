@@ -1,5 +1,5 @@
 {
-    "generated_on": "2026-02-09 12:06:12",
+    "generated_on": "2026-03-08 15:05:32",
     "system_name": "Localhost",
     "summary": {
         "critica": 1,
@@ -22,7 +22,7 @@
                     "evidence": "No se encontró parámetro Banner",
                     "remediation": "Añadir Banner /etc/issue.net",
                     "explanation": "Un banner legal advierte sobre uso no autorizado.",
-                    "timestamp": "2026-02-09T12:06:12.029528"
+                    "timestamp": "2026-03-08T15:05:32.003081"
                 },
                 {
                     "id": "CHK-SSH-6",
@@ -32,7 +32,7 @@
                     "evidence": "Se encontró el cipher inseguro: aes128-cbc",
                     "remediation": "Ciphers aes256-ctr,aes192-ctr,aes128-ctr",
                     "explanation": "Los cifrados CBC son débiles frente a ataques conocidos.",
-                    "timestamp": "2026-02-09T12:06:12.029528"
+                    "timestamp": "2026-03-08T15:05:32.003081"
                 },
                 {
                     "id": "CHK-SSH-8",
@@ -42,7 +42,7 @@
                     "evidence": "Línea 126: AllowTcpForwarding yes",
                     "remediation": "AllowTcpForwarding no",
                     "explanation": "Evita tunelización no autorizada.",
-                    "timestamp": "2026-02-09T12:06:12.029528"
+                    "timestamp": "2026-03-08T15:05:32.003081"
                 },
                 {
                     "id": "CHK-SSH-20",
@@ -52,7 +52,7 @@
                     "evidence": "Línea 135: PermitRootLogin yes",
                     "remediation": "PermitRootLogin no",
                     "explanation": "Evita accesos directos al usuario root.",
-                    "timestamp": "2026-02-09T12:06:12.029528"
+                    "timestamp": "2026-03-08T15:05:32.003081"
                 },
                 {
                     "id": "CHK-SSH-22",
@@ -62,7 +62,7 @@
                     "evidence": "Línea 147: UsePAM no",
                     "remediation": "UsePAM yes",
                     "explanation": "PAM añade controles avanzados de autenticación.",
-                    "timestamp": "2026-02-09T12:06:12.029528"
+                    "timestamp": "2026-03-08T15:05:32.003081"
                 },
                 {
                     "id": "CHK-SSH-12",
@@ -72,7 +72,7 @@
                     "evidence": "Se encontró el KexAlgorithm inseguro: diffie-hellman-group1-sha1",
                     "remediation": "KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256",
                     "explanation": "Usar Algortimos Kex inseguros puedes exponer las conexiones a posibles ataques 'Man In The Middle'",
-                    "timestamp": "2026-02-09T12:06:12.029528"
+                    "timestamp": "2026-03-08T15:05:32.003081"
                 }
             ]
         }

@@ -15,12 +15,12 @@
 
     <h3>MITRE ATT&CK</h3>
     <table>
-        <tr><th>ID</th><th>Técnica</th><th>Motivo</th></tr>
+        <tr><th>ID</th><th>Técnica</th><th>Táctica</th></tr>
         {% for m in h.mitre %}
         <tr>
             <td>{{ m.id }}</td>
             <td>{{ m.name }}</td>
-            <td>{{ m.reason }}</td>
+            <td>{{ m.tactic }}</td>
         </tr>
         {% endfor %}
     </table>

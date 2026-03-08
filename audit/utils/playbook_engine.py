@@ -19,94 +19,209 @@
 # ============================================================================
 # 1) MITRE ATT&CK MAP
 # ============================================================================
-MITRE_MAP = {
+MITRE_MAP ={
+  "Access_sshd_config": [
+    {
+      "id": "T1098",
+      "name": "Account Manipulation",
+      "tactic": "Persistence, Privilege Escalation"
+    },
+    {
+      "id": "T1543",
+      "name": "Create or Modify System Process",
+      "tactic": "Persistence"
+    },
+    {
+      "id": "T1562.001",
+      "name": "Impair Defenses: Disable or Modify Security Tools",
+      "tactic": "Defense Evasion"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.20 — PermitRootLogin
-    # --------------------------------------------------------------
-    "PermitRootLogin": [
-        {"id": "T1078", "name": "Valid Accounts", "reason": "Acceso directo como root sin necesidad de elevación."},
-        {"id": "T1110", "name": "Brute Force", "reason": "Vulnerable a intentos automatizados sobre root."},
-        {"id": "T1021", "name": "Remote Services", "reason": "SSH permite acceso total al sistema como root."}
-    ],
+  "SSH_PrivateHostKey_Permissions": [
+    {
+      "id": "T1552.004",
+      "name": "Unsecured Credentials: Private Keys",
+      "tactic": "Credential Access"
+    },
+    {
+      "id": "T1557",
+      "name": "Adversary-in-the-Middle",
+      "tactic": "Credential Access, Collection"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.19 — PermitEmptyPasswords
-    # --------------------------------------------------------------
-    "PermitEmptyPasswords": [
-        {"id": "T1078", "name": "Valid Accounts", "reason": "Cuentas sin contraseña permiten acceso directo."},
-        {"id": "T1110", "name": "Brute Force", "reason": "Elimina el proceso de autenticación, facilitando accesos automatizados."},
-    ],
+  "DisableForwarding": [
+    {
+      "id": "T1572",
+      "name": "Protocol Tunneling",
+      "tactic": "Command and Control"
+    },
+    {
+      "id": "T1090",
+      "name": "Proxy",
+      "tactic": "Command and Control"
+    },
+    {
+      "id": "T1021.004",
+      "name": "Remote Services: SSH",
+      "tactic": "Lateral Movement"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.6 — Weak Ciphers
-    # --------------------------------------------------------------
-    "WeakCiphers": [
-        {"id": "T1557", "name": "Man-in-the-Middle", "reason": "Cifrados débiles permiten interceptar tráfico SSH."},
-        {"id": "T1040", "name": "Network Sniffing", "reason": "Facilita descifrado de sesiones SSH."}
-    ],
+  "GSSAPIAuthentication": [
+    {
+      "id": "T1550",
+      "name": "Use of Alternate Authentication Material",
+      "tactic": "Lateral Movement"
+    },
+    {
+      "id": "T1078",
+      "name": "Valid Accounts",
+      "tactic": "Initial Access, Persistence, Privilege Escalation, Defense Evasion"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.8 — AllowTcpForwarding
-    # --------------------------------------------------------------
-    "AllowTcpForwarding": [
-        {"id": "T1572", "name": "Protocol Tunneling", "reason": "Permite túneles para pivoting interno."},
-        {"id": "T1090", "name": "Proxying", "reason": "El atacante puede enrutar tráfico a otros sistemas internos."}
-    ],
+  "KexAlgorithms": [
+    {
+      "id": "T1557",
+      "name": "Adversary-in-the-Middle",
+      "tactic": "Credential Access, Collection"
+    },
+    {
+      "id": "T1040",
+      "name": "Network Sniffing",
+      "tactic": "Credential Access, Discovery"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.16 — MaxAuthTries
-    # --------------------------------------------------------------
-    "MaxAuthTries": [
-        {"id": "T1110", "name": "Brute Force", "reason": "Aumenta ventana para ataques de credenciales automáticos."}
-    ],
+  "LoginGraceTime": [
+    {
+      "id": "T1110",
+      "name": "Brute Force",
+      "tactic": "Credential Access"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.17 — MaxSessions
-    # --------------------------------------------------------------
-    "MaxSessions": [
-        {"id": "T1021", "name": "Remote Services", "reason": "Permite múltiples conexiones SSH simultáneas."},
-        {"id": "T1105", "name": "Exfiltration Over SSH", "reason": "Puede usarse para múltiples flujos de datos paralelos."}
-    ],
+  "LogLevel": [
+    {
+      "id": "T1562.002",
+      "name": "Impair Defenses: Disable or Modify Security Logging",
+      "tactic": "Defense Evasion"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.10 — HostbasedAuthentication
-    # --------------------------------------------------------------
-    "HostbasedAuthentication": [
-        {"id": "T1550", "name": "Use of Trusted Relationships", "reason": "Autenticación basada en confianza entre hosts."},
-        {"id": "T1078", "name": "Valid Accounts", "reason": "Un atacante puede abusar del trust inter-host."}
-    ],
+  "MACs": [
+    {
+      "id": "T1557",
+      "name": "Adversary-in-the-Middle",
+      "tactic": "Credential Access, Collection"
+    },
+    {
+      "id": "T1040",
+      "name": "Network Sniffing",
+      "tactic": "Credential Access, Discovery"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.11 — IgnoreRhosts
-    # --------------------------------------------------------------
-    "IgnoreRhosts": [
-        {"id": "T1550.003", "name": "Exploitation of rhosts", "reason": "rhosts puede ser utilizado para acceso sin contraseña."},
-        {"id": "T1078", "name": "Valid Accounts", "reason": "Confianza heredada entre hosts vulnerables."}
-    ],
+  "UsePAM": [
+    {
+      "id": "T1556",
+      "name": "Modify Authentication Process",
+      "tactic": "Credential Access, Persistence"
+    },
+    {
+      "id": "T1110",
+      "name": "Brute Force",
+      "tactic": "Credential Access"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.21 — PermitUserEnvironment
-    # --------------------------------------------------------------
-    "PermitUserEnvironment": [
-        {"id": "T1059", "name": "Command Execution", "reason": "Variables maliciosas pueden ejecutar código."},
-        {"id": "T1543", "name": "Modify System Processes", "reason": "Puede manipular el entorno de ejecución de SSH."}
-    ],
+  "PermitRootLogin": [
+    {
+      "id": "T1078",
+      "name": "Valid Accounts",
+      "tactic": "Initial Access, Persistence, Privilege Escalation, Defense Evasion"
+    },
+    {
+      "id": "T1110",
+      "name": "Brute Force",
+      "tactic": "Credential Access"
+    },
+    {
+      "id": "T1021.004",
+      "name": "Remote Services: SSH",
+      "tactic": "Lateral Movement"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.18 — MaxStartups
-    # --------------------------------------------------------------
-    "MaxStartups": [
-        {"id": "T1499", "name": "Denial of Service", "reason": "Valores incorrectos pueden permitir DoS contra SSH."}
-    ],
+  "PermitEmptyPasswords": [
+    {
+      "id": "T1078",
+      "name": "Valid Accounts",
+      "tactic": "Initial Access, Persistence, Privilege Escalation, Defense Evasion"
+    },
+    {
+      "id": "T1021.004",
+      "name": "Remote Services: SSH",
+      "tactic": "Lateral Movement"
+    }
+  ],
 
-    # --------------------------------------------------------------
-    # 5.1.7 — ClientAliveInterval / ClientAliveCountMax
-    # --------------------------------------------------------------
-    "ClientAliveConfig": [
-        {"id": "T1071", "name": "C2 Communication", "reason": "Sesiones largas facilitan canales C2 persistentes."},
-        {"id": "T1499", "name": "Resource Exhaustion", "reason": "Sesiones sin límite pueden saturar recursos."}
-    ],
+  "MaxAuthTries": [
+    {
+      "id": "T1110",
+      "name": "Brute Force",
+      "tactic": "Credential Access"
+    }
+  ],
+
+  "MaxSessions": [
+    {
+      "id": "T1021.004",
+      "name": "Remote Services: SSH",
+      "tactic": "Lateral Movement"
+    },
+    {
+      "id": "T1041",
+      "name": "Exfiltration Over C2 Channel",
+      "tactic": "Exfiltration"
+    }
+  ],
+
+  "MaxStartups": [
+    {
+      "id": "T1499",
+      "name": "Endpoint Denial of Service",
+      "tactic": "Impact"
+    }
+  ],
+
+  "ClientAliveConfig": [
+    {
+      "id": "T1071",
+      "name": "Application Layer Protocol",
+      "tactic": "Command and Control"
+    },
+    {
+      "id": "T1041",
+      "name": "Exfiltration Over C2 Channel",
+      "tactic": "Exfiltration"
+    }
+  ],
+
+  "WeakCiphers": [
+  {
+    "id": "T1557",
+    "name": "Adversary-in-the-Middle",
+    "tactic": "Credential Access, Collection"
+  },
+  {
+    "id": "T1040",
+    "name": "Network Sniffing",
+    "tactic": "Credential Access, Discovery"
+  }
+ ]
 }
 
 
@@ -165,7 +280,7 @@ KILLCHAIN_MAP = {
 # 3) EXPLICACIÓN EXTENDIDA POR HALLAZGO
 # ============================================================================
 EXPLANATION_TEXT = {
-
+    
     "PermitRootLogin": (
         "Habilitar el acceso directo al usuario root permite a un atacante obtener control "
         "total del sistema sin requerir escalada de privilegios. Este es uno de los fallos "
@@ -220,7 +335,60 @@ EXPLANATION_TEXT = {
         "Valores demasiado altos permiten sesiones persistentes que pueden ser usadas como canales de C2 o "
         "mantener conexiones abiertas para actividades maliciosas."
     ),
+
+    "KexAlgorithms": (
+        "El uso de algoritmos de intercambio de claves débiles como versiones basadas en SHA-1 "
+        "puede permitir ataques de degradación criptográfica o facilitar ataques Man-in-the-Middle. "
+        "Un algoritmo KEX inseguro compromete la confidencialidad inicial del túnel SSH, "
+        "poniendo en riesgo credenciales y datos transmitidos."
+    ),
+
+    "MACs": (
+        "El uso de algoritmos MAC débiles (como MD5 o variantes truncadas de SHA1) puede permitir "
+        "ataques de integridad o degradación criptográfica. Un MAC inseguro puede facilitar la "
+        "manipulación o el análisis del tráfico cifrado, comprometiendo la confidencialidad e "
+        "integridad de la sesión SSH."
+    ),
+
+    "UsePAM": (
+        "Deshabilitar PAM reduce significativamente los controles de autenticación disponibles, "
+        "incluyendo políticas de bloqueo, expiración de contraseña, autenticación multifactor "
+        "y controles adicionales de seguridad. Esto debilita el proceso de autenticación y "
+        "facilita ataques de fuerza bruta o abuso de cuentas comprometidas."
+    ),
+
+    "LoginGraceTime": (
+        "Un tiempo excesivo antes de cerrar sesiones de autenticación incompletas amplía la ventana "
+        "para ataques automatizados de fuerza bruta o enumeración de usuarios. Reducir este valor "
+        "limita la capacidad del atacante de probar múltiples combinaciones de credenciales."
+    ),
+
+    "LogLevel": (
+        "Un nivel de registro insuficiente reduce la visibilidad sobre intentos fallidos de acceso, "
+        "movimientos laterales o actividades sospechosas. Esto dificulta la detección temprana de "
+        "ataques y facilita la evasión de mecanismos de monitoreo y respuesta."
+    ),
+
+    "GSSAPIAuthentication": (
+        "Habilitar autenticación GSSAPI puede ampliar la superficie de ataque si no se gestiona "
+        "correctamente la infraestructura Kerberos. Un atacante podría abusar de tickets válidos "
+        "o configuraciones incorrectas para autenticarse sin necesidad de credenciales adicionales."
+    ),
+
+    "AllowUsersGroups": (
+        "No restringir explícitamente los usuarios o grupos permitidos para autenticarse mediante SSH "
+        "incrementa la superficie de ataque, permitiendo que cualquier cuenta válida del sistema "
+        "intente autenticarse remotamente. Limitar usuarios reduce significativamente el riesgo de "
+        "compromiso por credenciales robadas."
+    ),
+
+    "Banner": (
+        "No configurar un banner legal previo a la autenticación elimina una capa disuasoria y "
+        "puede dificultar acciones legales posteriores. Aunque no es una vulnerabilidad técnica "
+        "directa, forma parte de las buenas prácticas de seguridad y cumplimiento normativo."
+    ),
 }
+
 
 
 # ============================================================================
