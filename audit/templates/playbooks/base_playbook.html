@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Playbook de Análisis Forense - SSH</title>
+
+<style>
+/* ===================== */
+/*   ESTILOS GENERALES   */
+/* ===================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #FFFFFF;
+    color: #111;
+    line-height: 1.5;
+    font-size: 13px;
+}
+
+/* Títulos */
+h1, h2, h3, h4 {
+    color: #D40000;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-top: 28px;
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: 22px;
+}
+
+h4 {
+    font-size: 15px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+h2, h3, h4 {
+    page-break-after: avoid;
+}
+
+/* Separador */
+.section-divider {
+    border-bottom: 2px solid #D40000;
+    margin: 25px 0;
+}
+
+/* ===================== */
+/*        TABLAS         */
+/* ===================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed;
+    page-break-inside: auto;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tbody {
+    display: table-row-group;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+
+th {
+    background-color: #0B0B0B;
+    color: #FFF;
+    padding: 8px;
+    border: 1px solid #CCC;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+td {
+    padding: 7px;
+    border: 1px solid #CCC;
+    vertical-align: top;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: normal;
+}
+
+/* ===================== */
+/*        BLOQUES        */
+/* ===================== */
+
+.block,
+.finding-block,
+.common-checklist-block {
+    background: #F7F7F7;
+    padding: 12px;
+    border-left: 6px solid #D40000;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    clear: both;
+    overflow: hidden;
+}
+
+/* Cada hallazgo empieza en página nueva */
+.finding-block {
+    page-break-before: always;
+    page-break-inside: auto;
+}
+
+/* Evita salto extra antes del primer hallazgo */
+.finding-block.first-finding {
+    page-break-before: auto;
+}
+
+/* Checklist común separado */
+.common-checklist-block {
+    page-break-after: always;
+    page-break-inside: auto;
+}
+
+.section-note {
+    color: #333;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+/* ===================== */
+/*    TABLA INDICADORES  */
+/* ===================== */
+
+.dfir-table {
+    font-size: 12px;
+}
+
+.dfir-table .col-type {
+    width: 24%;
+}
+
+.dfir-table .col-details {
+    width: 76%;
+}
+
+.dfir-table td:first-child {
+    background-color: #EFEFEF;
+    font-weight: bold;
+}
+
+/* ===================== */
+/*    CHECKLIST CARDS    */
+/* ===================== */
+
+.check-card {
+    background: #FFFFFF;
+    border: 1px solid #CCC;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    page-break-inside: avoid;
+}
+
+/* Importante: sin barra roja interna para evitar acumulación visual */
+.check-card::before {
+    content: none;
+}
+
+.check-card p {
+    margin: 5px 0;
+}
+
+.check-card-title {
+    color: #D40000;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.check-label {
+    font-weight: bold;
+}
+
+.why-text {
+    margin-top: 6px;
+    font-size: 11px;
+    color: #333;
+}
+
+.review-list {
+    margin: 6px 0 8px 0;
+    padding-left: 18px;
+}
+
+.review-list li {
+    margin-bottom: 3px;
+}
+
+.interpretation-text {
+    margin: 4px 0 8px 0;
+}
+
+/* Código */
+code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 10px;
+    background-color: #E8E8E8;
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Pre formateado */
+pre {
+    background: #D8D8D8;
+    padding: 6px;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    page-break-inside: avoid;
+}
+
+/* ===================== */
+/*        PORTADA        */
+/* ===================== */
+
+.cover-page {
+    text-align: center;
+    margin-top: 150px;
+    page-break-after: always;
+}
+
+.cover-title {
+    font-size: 38px;
+    font-weight: bold;
+    color: #D40000;
+}
+
+.cover-subtitle {
+    font-size: 20px;
+    color: #111;
+}
+
+.cover-meta {
+    margin-top: 40px;
+    color: #444;
+    font-size: 16px;
+}
+
+/* ===================== */
+/*         ÍNDICE        */
+/* ===================== */
+
+.toc-section {
+    page-break-after: always;
+}
+
+.toc-item {
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+/* ===================== */
+/*    AJUSTES WKHTMLPDF  */
+/* ===================== */
+
+tfoot {
+    display: table-row-group;
+}
+
+img {
+    max-width: 100%;
+}
+</style>
+
+</head>
+
+<body>
+
+{% include 'playbooks/cover.html' %}
+
+{% include 'playbooks/toc.html' %}
+
+{% if hallazgos|length > 0 and hallazgos[0].checklist_common %}
+<div class="common-checklist-block">
+    <h2>Checklist general SSH</h2>
+
+    <p class="section-note">
+        Este checklist recoge comprobaciones generales aplicables a cualquier hallazgo relacionado con SSH.
+        Su objetivo es orientar una revisión inicial para identificar accesos sospechosos, intentos fallidos,
+        persistencia, sesiones activas o túneles inesperados. Las comprobaciones específicas de cada hallazgo
+        se incluyen posteriormente dentro de su apartado correspondiente.
+    </p>
+
+    {% for item in hallazgos[0].checklist_common %}
+    <div class="check-card">
+        <div class="check-card-title">{{ item.category }}</div>
+
+        <p><span class="check-label">Pregunta:</span> {{ item.question }}</p>
+
+        <p class="why-text">{{ item.why }}</p>
+
+        {% if item.review %}
+        <p><span class="check-label">Qué revisar:</span></p>
+        <ul class="review-list">
+            {% for review in item.review %}
+                <li>{{ review }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <p><span class="check-label">Si se encuentran evidencias:</span></p>
+        <p class="interpretation-text">{{ item.if_found }}</p>
+
+        <p><span class="check-label">Si no se encuentran evidencias:</span></p>
+        <p class="interpretation-text">{{ item.if_not_found }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h2>Playbook de Hallazgos</h2>
+<div class="section-divider"></div>
+
+{% for h in hallazgos %}
+<div class="finding-block {% if loop.first %}first-finding{% endif %}">
+    {% include 'playbooks/hallazgo.html' %}
+</div>
+{% endfor %}
+
+{% include 'playbooks/end.html' %}
+
+</body>
+</html>

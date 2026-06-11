@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+from rich.console import Console
+from rich.prompt import Prompt
+from main import scan
+
+console = Console()
+
+
+def show_banner():
+
+    console.print("""
+[bold cyan]
+    _____ ____ _   _ ______ _____ _____   _    _ _    _ _   _ _______ ______ _____  
+  / ____/ __ \| \ | |  ____|_   _/ ____| | |  | | |  | | \ | |__   __|  ____|  __ \ 
+ | |   | |  | |  \| | |__    | || |  __  | |__| | |  | |  \| |  | |  | |__  | |__) |
+ | |   | |  | | . ` |  __|   | || | |_ | |  __  | |  | | . ` |  | |  |  __| |  _  / 
+ | |___| |__| | |\  | |     _| || |__| | | |  | | |__| | |\  |  | |  | |____| | \ \ 
+  \_____\____/|_| \_|_|    |_____\_____| |_|  |_|\____/|_| \_|  |_|  |______|_|  \_\
+                                                                                  
+                            By Iván Seco Martín ♡                                             
+
+                    
+[/bold cyan]
+""")
+
+
+def menu():
+
+    show_banner()
+
+    console.print("\n[bold]Seleccione una opción:[/bold]\n")
+
+    console.print("1) Escaneo completo")
+    console.print("2) Escaneo SSH")
+    console.print("3) Escaneo Firewall (UFW)")
+    console.print("4) Salir\n")
+
+    option = Prompt.ask("Opción", choices=["1","2","3","4"])
+
+    if option == "1":
+        scan(None)
+
+    elif option == "2":
+        scan("ssh")
+
+    elif option == "3":
+        scan("ufw")
+
+    elif option == "4":
+        console.print("\n[bold yellow]Saliendo de ConfigHunter...[/bold yellow]")
+        sys.exit()
+
+
+if __name__ == "__main__":
+
+    # comprobar privilegios root
+    if os.geteuid() != 0:
+        print("❌ ConfigHunter debe ejecutarse con permisos de administrador.")
+        print("Ejecute: sudo confighunter")
+        sys.exit(1)
+
+    menu()

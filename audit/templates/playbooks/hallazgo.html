@@ -1,0 +1,168 @@
+<h2>{{ h.title }}</h2>
+
+<h3>Descripción ampliada</h3>
+<p>{{ h.explanation_ext }}</p>
+
+<h3>Importancia defensiva</h3>
+<p>{{ h.explanation }}</p>
+
+<h3>Evidencia</h3>
+<pre>{{ h.evidence }}</pre>
+
+<h3>Explotación del hallazgo</h3>
+<p>{{ h.exploitation }}</p>
+
+<h3>MITRE ATT&CK</h3>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Técnica</th>
+            <th>Táctica</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if h.mitre %}
+        {% for m in h.mitre %}
+        <tr>
+            <td>{{ m.id }}</td>
+            <td>{{ m.name }}</td>
+            <td>{{ m.tactic }}</td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="3">
+                No se ha definido una técnica MITRE ATT&CK específica para este hallazgo.
+            </td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+<h3>Cyber Kill Chain</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Fase</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if h.killchain %}
+        {% for phase in h.killchain %}
+        <tr>
+            <td>{{ phase }}</td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No se ha definido una fase específica de Cyber Kill Chain para este hallazgo.</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+<h3>Indicadores DFIR</h3>
+
+<table class="dfir-table">
+    <colgroup>
+        <col class="col-type">
+        <col class="col-details">
+    </colgroup>
+
+    <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Detalles</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% if h.forensic.logs %}
+    <tr>
+        <td>Logs relacionados</td>
+        <td>
+            {% for log in h.forensic.logs %}
+                • {{ log }}<br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endif %}
+
+    {% if h.forensic.files %}
+    <tr>
+        <td>Archivos y artefactos a revisar</td>
+        <td>
+            {% for file in h.forensic.files %}
+                • <code>{{ file }}</code><br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endif %}
+
+    {% if h.forensic.commands %}
+    <tr>
+        <td>Comandos de verificación</td>
+        <td>
+            {% for command in h.forensic.commands %}
+                • <code>{{ command }}</code><br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endif %}
+
+    {% if h.forensic.indicators %}
+    <tr>
+        <td>Indicadores de interés</td>
+        <td>
+            {% for indicator in h.forensic.indicators %}
+                • {{ indicator }}<br>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endif %}
+
+    {% if h.forensic.notes %}
+    <tr>
+        <td>Notas de análisis</td>
+        <td>{{ h.forensic.notes }}</td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+<h3>Checklist Forense</h3>
+
+{% if h.checklist_specific %}
+    <h4>Checklist específico del hallazgo</h4>
+
+    {% for item in h.checklist_specific %}
+    <div class="check-card">
+        <div class="check-card-title">{{ item.category }}</div>
+
+        <p><span class="check-label">Pregunta:</span> {{ item.question }}</p>
+
+        <p class="why-text">{{ item.why }}</p>
+
+        {% if item.review %}
+        <p><span class="check-label">Qué revisar:</span></p>
+        <ul class="review-list">
+            {% for review in item.review %}
+                <li>{{ review }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <p><span class="check-label">Si se encuentran evidencias:</span></p>
+        <p class="interpretation-text">{{ item.if_found }}</p>
+
+        <p><span class="check-label">Si no se encuentran evidencias:</span></p>
+        <p class="interpretation-text">{{ item.if_not_found }}</p>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>
+        No existe un checklist específico para este hallazgo. Se recomienda aplicar el checklist general SSH
+        y revisar los indicadores DFIR asociados.
+    </p>
+{% endif %}

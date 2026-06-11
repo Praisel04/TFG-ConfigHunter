@@ -1,0 +1,7 @@
+typer
+rich
+jinja2
+pdfkit
+wkhtmltopdf==0.2
+pathlib
+datetime

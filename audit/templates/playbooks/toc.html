@@ -1,0 +1,8 @@
+<div class="toc-section">
+    <h2>Índice</h2>
+    <div class="section-divider"></div>
+
+    {% for h in hallazgos %}
+        <div class="toc-item">✔ {{ loop.index }} — {{ h.title }}</div>
+    {% endfor %}
+</div>
