@@ -183,11 +183,9 @@ Dependencias principales de Python:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/TU_USUARIO/ConfigHunter.git
-cd ConfigHunter/audit
+git clone https://github.com/Praisel04/TFG-ConfigHunter.git
+cd TFG-ConfigHunter/audit
 ```
-
-> Sustituye `TU_USUARIO` por el nombre real de usuario o la organización donde esté publicado el repositorio.
 
 ### 2. Instalar dependencias de Python
 
