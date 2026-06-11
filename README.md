@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ConfigHunter
 
 **ConfigHunter** es una herramienta modular de auditoría automatizada de configuraciones de seguridad en sistemas Linux. Su objetivo es detectar configuraciones inseguras en servicios críticos, generar hallazgos estructurados con evidencias y remediaciones, producir informes técnicos en distintos formatos y contextualizar determinados hallazgos mediante modelos defensivos como **MITRE ATT&CK** y **Cyber Kill Chain**.
@@ -439,7 +438,7 @@ El autor no se hace responsable del uso indebido de la herramienta.
 ## Autor
 
 **Iván Seco Martín**
-Trabajo Fin de Grado - Ingeniería Informática
+Trabajo Fin de Grado - Ingeniería Informática - Universidad Camilo Jose Cela
 2026
 
 ---
@@ -448,5 +447,3 @@ Trabajo Fin de Grado - Ingeniería Informática
 
 Este proyecto se distribuye bajo licencia MIT. Consulta el archivo `LICENSE` para más información.
 =======
-# TFG-GoAudit
->>>>>>> 9746aef323d92dc29d8d3038b2c22dc5ec928130
